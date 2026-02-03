@@ -1,0 +1,14 @@
+---
+interface Props {
+	error: unknown;
+}
+
+const { error } = Astro.props;
+---
+
+<div class="">
+	<h1 class="">404</h1>
+	<p class="">
+		{error instanceof Error ? error.message : "Page not found"}
+	</p>
+</div>
