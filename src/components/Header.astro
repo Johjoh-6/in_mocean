@@ -1,6 +1,13 @@
 ---
 import Waves from "@lucide/astro/icons/waves";
 import Music from "@lucide/astro/icons/music";
+import { t, type Locale } from "../translations";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
 ---
 
 <header
@@ -20,22 +27,22 @@ import Music from "@lucide/astro/icons/music";
 			<a
 				href="#about"
 				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>About</a
+				>{t(locale, "header.about")}</a
 			>
 			<a
 				href="#music"
 				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>Music</a
+				>{t(locale, "header.music")}</a
 			>
 			<a
 				href="#events"
 				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>Events</a
+				>{t(locale, "header.events")}</a
 			>
 			<a
 				href="#contact"
 				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>Contact</a
+				>{t(locale, "header.contact")}</a
 			>
 		</nav>
 	</nav>

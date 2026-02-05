@@ -2,11 +2,12 @@
 import Layout from "../layouts/Layout.astro";
 import HeroBanner from "../components/HeroBanner.svelte";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { t } from "../translations";
+
+const locale = "en";
 ---
 
-<Layout>
+<Layout locale={locale}>
 	<HeroBanner client:load />
 	<!-- Next component/content -->
 	<section class="h-screen bg-white flex items-center justify-center">
