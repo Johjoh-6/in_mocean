@@ -1,3 +1,7 @@
+---
+import "../styles/global.css";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -5,10 +9,22 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
+		<script is:inline>
+			document.addEventListener("astro:after-swap", () => {
+				if (
+					localStorage.theme === "dark" ||
+					(!("theme" in localStorage) &&
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches)
+				) {
+					document.documentElement.classList.add("dark");
+				}
+			});
+		</script>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Dj Sunset</title>
 	</head>
-	<body>
+	<body class="relative bg-slate-950">
 		<slot />
 	</body>
 </html>
