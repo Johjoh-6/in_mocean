@@ -181,4 +181,20 @@
 		font-weight: var(--font-weight-normal);
 		line-height: 1.5;
 	}
+
+	main > section {
+		padding: 2rem 0;
+	}
+	@media screen {
+		@media (min-width: 768px) {
+			main > section {
+				padding: 3rem 0;
+			}
+		}
+		@media (min-width: 1024px) {
+			main > section {
+				padding: 4rem 0;
+			}
+		}
+	}
 }

@@ -1,0 +1,29 @@
+---
+import { t, type Locale } from "../translations";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const year = new Date().getFullYear();
+
+const copyright =
+	year == 2026 ? `©${year} DJ Sunset` : `©2026 - ${year} DJ Sunset`;
+---
+
+<footer
+	class="bottom-0 left-0 right-0 z-10 py-8 border-t border-slate-800/50 backdrop-blur-sm"
+>
+	<div class="container mx-auto px-4">
+		<div
+			class="flex flex-col md:flex-row items-center justify-between gap-4 text-gray-500 text-sm"
+		>
+			<p>{copyright}. {t(locale, "footer.copyright")}</p>
+			<p class="flex items-center gap-2">
+				{t(locale, "footer.location")}
+			</p>
+		</div>
+	</div>
+</footer>

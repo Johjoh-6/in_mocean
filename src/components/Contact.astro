@@ -1,0 +1,124 @@
+---
+import { Instagram, Music2, Mail, Youtube } from "@lucide/astro";
+import { t, type Locale } from "../translations";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const year = new Date().getFullYear();
+
+const copyright =
+	year != 2026 ? `©${year} DJ Sunset` : `©2026 - ${year} DJ Sunset`;
+
+const socialLinks = [
+	{
+		icon: Instagram,
+		label: "Instagram",
+		handle: "@djsunset",
+		href: "https://instagram.com/djsunset",
+		color: "from-purple-500 to-pink-500",
+	},
+	{
+		icon: Music2,
+		label: "SoundCloud",
+		handle: "soundcloud.com/djsunset",
+		href: "https://soundcloud.com/djsunset",
+		color: "from-orange-500 to-orange-600",
+	},
+	{
+		icon: Youtube,
+		label: "YouTube",
+		handle: "@djsunset",
+		href: "https://youtube.com/@djsunset",
+		color: "from-red-500 to-red-600",
+	},
+	{
+		icon: Mail,
+		label: "Email",
+		handle: "contato@djsunset.com",
+		href: "mailto:contato@djsunset.com",
+		color: "from-blue-500 to-blue-600",
+	},
+];
+---
+
+<section
+	id="contact"
+	class="relative min-h-screen flex items-center justify-center overflow-hidden"
+>
+	<div class="absolute inset-0 z-0">
+		<div
+			class="w-full h-full bg-cover bg-center"
+			style={{
+				backgroundImage: `url('https://images.unsplash.com/photo-1651458198250-059e5fdcaed7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHN1bnNldCUyMGFlcmlhbCUyMHZpZXd8ZW58MXx8fHwxNzcwMDQyODM3fDA&ixlib=rb-4.1.0&q=80&w=1080')`,
+			}}
+		>
+			<div
+				class="absolute inset-0 bg-linear-to-b from-slate-950/80 via-slate-950/75 to-slate-950/85"
+			>
+			</div>
+		</div>
+	</div>
+
+	<div class="container mx-auto px-4 relative">
+		<div class="max-w-4xl mx-auto text-center">
+			<div>
+				<h2
+					class="text-5xl md:text-7xl mb-6 bg-linear-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent"
+				>
+					{t(locale, "contact.connect")}
+				</h2>
+				<p
+					class="text-xl md:text-2xl text-gray-300 mb-16 leading-relaxed"
+				>
+					{t(locale, "contact.subtitle")}
+				</p>
+			</div>
+
+			<div class="grid sm:grid-cols-2 gap-6 mb-16">
+				{
+					socialLinks.map((link, index) => (
+						<a
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group relative bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-800 hover:border-slate-700 transition-all duration-300 overflow-hidden"
+						>
+							<div
+								class={`absolute inset-0 bg-linear-to-br ${link.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+							/>
+
+							<div class="relative flex items-center gap-6">
+								<div
+									class={`w-16 h-16 rounded-full bg-linear-to-br ${link.color} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform duration-300`}
+								>
+									<link.icon class="w-8 h-8 text-white" />
+								</div>
+
+								<div class="text-left flex-1">
+									<div class="text-lg text-white mb-1 group-hover:text-white transition-colors">
+										{link.label}
+									</div>
+									<div class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+										{link.handle}
+									</div>
+								</div>
+
+								<div class="text-gray-400 group-hover:text-white transition-colors">
+									→
+								</div>
+							</div>
+						</a>
+					))
+				}
+			</div>
+
+			<div class="text-gray-400 text-lg italic">
+				≪ {t(locale, "contact.caption")} ≫ 🌅🎵
+			</div>
+		</div>
+	</div>
+</section>
