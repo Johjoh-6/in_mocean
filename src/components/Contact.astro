@@ -1,5 +1,5 @@
 ---
-import { Instagram, Music2, Mail, Youtube } from "@lucide/astro";
+import { Instagram, Music2, Mail, Youtube, ExternalLink } from "@lucide/astro";
 import { t, type Locale } from "../translations";
 import HeroBannerImage from "../assets/unplash-hero.jpeg";
 
@@ -9,10 +9,13 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const year = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
+const startYear = 2026;
 
 const copyright =
-	year != 2026 ? `©${year} DJ Sunset` : `©2026 - ${year} DJ Sunset`;
+	currentYear === startYear
+		? `© ${currentYear} DJ Sunset`
+		: `© ${startYear} - ${currentYear} DJ Sunset`;
 
 const socialLinks = [
 	{
@@ -49,8 +52,123 @@ const socialLinks = [
 <section
 	id="contact"
 	class="relative min-h-screen flex items-center justify-center overflow-hidden"
+	role="contentinfo"
+	aria-labelledby="contact-title"
 >
+	<!-- Background with optimization -->
 	<div class="absolute inset-0 z-0">
+		<div
+			class="w-full h-full bg-cover bg-center bg-no-repeat"
+			style={`background-image: url('${HeroBannerImage.src}')`}
+		>
+			<div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90 backdrop-blur-[1px]"></div>
+		</div>
+	</div>
+
+	<!-- Animated background elements -->
+	<div class="absolute inset-0 z-1 pointer-events-none">
+		<div class="absolute top-1/4 left-1/4 w-2 h-2 bg-orange-400/60 rounded-full animate-pulse animation-delay-0"></div>
+		<div class="absolute top-1/3 right-1/4 w-1 h-1 bg-pink-400/60 rounded-full animate-pulse animation-delay-1000"></div>
+		<div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-purple-400/60 rounded-full animate-pulse animation-delay-2000"></div>
+		<div class="absolute bottom-1/3 right-1/3 w-1 h-1 bg-blue-400/60 rounded-full animate-pulse animation-delay-3000"></div>
+	</div>
+
+	<div class="container mx-auto px-4 lg:px-8 relative z-10">
+		<div class="max-w-5xl mx-auto">
+			<!-- Header Section -->
+			<header class="text-center mb-16">
+				<h2
+					id="contact-title"
+					class="text-4xl md:text-6xl lg:text-7xl mb-8 bg-linear-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-bold leading-tight"
+				>
+					{t(locale, "contact.connect")}
+				</h2>
+				<p class="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+					{t(locale, "contact.subtitle")}
+				</p>
+			</header>
+
+			<!-- Social Links Grid -->
+			<div class="grid sm:grid-cols-2 gap-6 lg:gap-8 mb-16" role="list" aria-label="Social media and contact links">
+				{socialLinks.map((link) => (
+					<article role="listitem">
+						<a
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="group relative bg-slate-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-slate-700/50 hover:border-slate-600/80 focus:border-slate-600/80 focus:outline-none focus:ring-4 focus:ring-orange-500/20 transition-all duration-500 overflow-hidden block transform hover:-translate-y-2 hover:shadow-2xl"
+							aria-label={`Visit ${link.label}: ${link.handle}`}
+						>
+							<!-- Hover background effect -->
+							<div class={`absolute inset-0 bg-linear-to-br ${link.color} opacity-0 group-hover:opacity-5 group-focus:opacity-5 transition-opacity duration-500`}></div>
+
+							<!-- Animated border -->
+							<div class="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+								<div class={`absolute inset-0 rounded-2xl bg-linear-to-r ${link.color} opacity-20 blur-sm`}></div>
+							</div>
+
+							<div class="relative flex items-center gap-4 lg:gap-6">
+								<!-- Icon -->
+								<div class={`w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-linear-to-br ${link.color} flex items-center justify-center shrink-0 group-hover:scale-110 group-focus:scale-110 transition-all duration-500 shadow-lg`}>
+									<link.icon class="w-7 h-7 lg:w-8 lg:h-8 text-white" aria-hidden="true" />
+								</div>
+
+								<!-- Content -->
+								<div class="text-left flex-1 min-w-0">
+									<div class="text-lg lg:text-xl font-semibold text-white mb-1 group-hover:text-white transition-colors duration-300">
+										{link.label}
+									</div>
+									<div class="text-sm lg:text-base text-gray-400 group-hover:text-gray-300 transition-colors duration-300 truncate">
+										{link.handle}
+									</div>
+								</div>
+
+								<!-- Arrow indicator -->
+								<div class="flex items-center justify-center w-8 h-8 text-gray-400 group-hover:text-white group-focus:text-white transition-all duration-300 transform group-hover:translate-x-1 group-focus:translate-x-1">
+									<ExternalLink class="w-5 h-5" aria-hidden="true" />
+								</div>
+							</div>
+						</a>
+					</article>
+				))}
+			</div>
+			<div class="text-center text-gray-400 text-lg lg:text-xl italic font-light">
+							<span role="img" aria-label="Music waves">≪</span>
+							{t(locale, "contact.caption")}
+							<span role="img" aria-label="Music waves">≫</span>
+							<span role="img" aria-label="Sunrise and music">🌅🎵</span>
+						</div>
+</section>
+
+<style>
+.animation-delay-0 { animation-delay: 0ms; }
+	.animation-delay-1000 { animation-delay: 1000ms; }
+	.animation-delay-2000 { animation-delay: 2000ms; }
+	.animation-delay-3000 { animation-delay: 3000ms; }
+
+	/* Smooth animations */
+	.contact-section a {
+		will-change: transform;
+	}
+
+	/* Focus improvements for accessibility */
+	@media (prefers-reduced-motion: reduce) {
+		.contact-section * {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+		}
+	}
+
+	/* Enhanced mobile performance */
+	@media (max-width: 768px) {
+		.contact-section {
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+		}
+	}
+</style>
+	<!-- <div class="absolute inset-0 z-0">
 		<div
 			class="w-full h-full bg-cover bg-center"
 			style={{
@@ -122,4 +240,4 @@ const socialLinks = [
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
