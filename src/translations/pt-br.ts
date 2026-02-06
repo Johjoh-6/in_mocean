@@ -22,6 +22,12 @@ export const translations = {
 			plays: "Plays Online",
 		},
 	},
+	events: {
+		title: "Próximos Shows",
+		description: "Venha sentir a energia do pôr do sol",
+		button: "Ver Agenda Completa",
+		details: "Ver Detalhes",
+	},
 	contact: {
 		connect: "Conecte-se",
 		subtitle: "Siga minha jornada musical através das ondas sonoras",
@@ -30,5 +36,21 @@ export const translations = {
 	footer: {
 		copyright: "Todos os direitos reservados.",
 		location: "Baseado em Florianópolis, SC - Brasil 🇧🇷",
+	},
+	date: {
+		months: {
+			0: "JAN",
+			1: "FEV",
+			2: "MAR",
+			3: "ABR",
+			4: "MAI",
+			5: "JUN",
+			6: "JUL",
+			7: "AGO",
+			8: "SET",
+			9: "OUT",
+			10: "NOV",
+			11: "DEZ",
+		},
 	},
 } as const;

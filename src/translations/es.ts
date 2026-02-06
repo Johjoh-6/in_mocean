@@ -22,6 +22,12 @@ export const translations = {
 			plays: "Plays Online",
 		},
 	},
+	events: {
+		title: "Proximos Eventos",
+		description: "Venen sentir la magia del coucher del sol",
+		button: "Ver Agenda Completa",
+		details: "Ver Detalles",
+	},
 	contact: {
 		connect: "Conectar",
 		subtitle: "Sigue mi música a través de las olas sonoras",
@@ -30,5 +36,21 @@ export const translations = {
 	footer: {
 		copyright: "Todos los derechos reservados.",
 		location: "Baseado en Florianópolis, SC - Brasil 🇧🇷",
+	},
+	date: {
+		months: {
+			0: "ENE",
+			1: "FEB",
+			2: "MAR",
+			3: "ABR",
+			4: "MAY",
+			5: "JUN",
+			6: "JUL",
+			7: "AGO",
+			8: "SEP",
+			9: "OCT",
+			10: "NOV",
+			11: "DIC",
+		},
 	},
 } as const;

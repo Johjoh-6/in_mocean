@@ -22,6 +22,12 @@ export const translations = {
 			plays: "Plays Online",
 		},
 	},
+	events: {
+		title: "Prochains Événements",
+		description: "Venez sentir la magie du coucher du soleil",
+		button: "Voir l'Agenda Complet",
+		details: "Voir détail",
+	},
 	contact: {
 		connect: "Connect",
 		subtitle: "Suivez ma musique à travers les vagues sonores",
@@ -30,5 +36,21 @@ export const translations = {
 	footer: {
 		copyright: "Tous les droits réservés.",
 		location: "Basé à Florianópolis, SC - Brésil 🇧🇷",
+	},
+	date: {
+		months: {
+			0: "JAN",
+			1: "FEV",
+			2: "MAR",
+			3: "AVR",
+			4: "MAI",
+			5: "JUN",
+			6: "JUL",
+			7: "AOU",
+			8: "SEP",
+			9: "OCT",
+			10: "NOV",
+			11: "DEC",
+		},
 	},
 } as const;

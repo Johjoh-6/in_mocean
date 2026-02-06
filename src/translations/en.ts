@@ -23,6 +23,12 @@ export const translations = {
 			plays: "Plays Online",
 		},
 	},
+	events: {
+		title: "Next Shows",
+		description: "Come feel the energy of the sunset",
+		button: "View Full Agenda",
+		details: "View Details",
+	},
 	contact: {
 		connect: "Connect",
 		subtitle: "Follow my musical journey through the waves of sound",
@@ -31,5 +37,21 @@ export const translations = {
 	footer: {
 		copyright: "All rights reserved.",
 		location: "Based in Florianópolis, SC - Brazil 🇧🇷",
+	},
+	date: {
+		months: {
+			0: "JAN",
+			1: "FEB",
+			2: "MAR",
+			3: "APR",
+			4: "MAY",
+			5: "JUN",
+			6: "JUL",
+			7: "AUG",
+			8: "SEP",
+			9: "OCT",
+			10: "NOV",
+			11: "DEC",
+		},
 	},
 } as const;
