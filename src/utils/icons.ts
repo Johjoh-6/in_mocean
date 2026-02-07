@@ -7,6 +7,8 @@ import {
 	ExternalLink,
 	MessageCircle,
 	Heart,
+	Play,
+	Eye,
 	type AstroComponent,
 } from "@lucide/astro";
 
@@ -25,6 +27,8 @@ export const iconMap: Record<string, AstroComponent> = {
 	waves: Waves,
 	heart: Heart,
 	"message-circle": MessageCircle,
+	play: Play,
+	eye: Eye,
 };
 
 export function getIcon(iconName: string): AstroComponent {
