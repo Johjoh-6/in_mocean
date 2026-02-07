@@ -1,12 +1,22 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import HeroBanner from "../../components/HeroBanner.svelte";
-import { t } from "../../translations";
+import About from "../../components/About.astro";
+import Events from "../../components/Events.astro";
+import SoundCloud from "../../components/SoundCloud.astro";
+import Youtube from "../../components/Youtube.astro";
+import Instagram from "../../components/Instagram.astro";
+import Contact from "../../components/Contact.astro";
 
 const locale = "pt-br";
 ---
 
 <Layout locale={locale}>
 	<HeroBanner client:load />
-	<p>Em portugues</p>
+	<About locale={locale} />
+	<Events locale={locale} />
+	<SoundCloud locale={locale} />
+	<Youtube locale={locale} />
+	<Instagram locale={locale} />
+	<Contact locale={locale} />
 </Layout>
