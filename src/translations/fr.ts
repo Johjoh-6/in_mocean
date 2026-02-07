@@ -32,12 +32,17 @@ export const translations = {
 		title: "Mes Mixes",
 		subtitle:
 			"Écoutez et ressentez les vibrations de l'océan dans chaque piste",
-		profileButton: "Voir le Profil SoundCloud",
+		button: "Voir le Profil SoundCloud",
 	},
 	youtube: {
 		title: "Vidéos & Sets",
 		subtitle: "Regardez les meilleurs moments et sets complets",
-		channelButton: "Voir la Chaîne YouTube",
+		button: "Voir la Chaîne YouTube",
+	},
+	instagram: {
+		title: "Suivez-moi sur Instagram",
+		subtitle: "Suivez mes dernières créations",
+		button: "Voir le Profil Instagram",
 	},
 	contact: {
 		connect: "Connect",

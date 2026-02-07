@@ -32,12 +32,17 @@ export const translations = {
 	soundcloud: {
 		title: "My Mixes",
 		subtitle: "Listen and feel the ocean vibe in every track",
-		profileButton: "View SoundCloud Profile",
+		button: "View SoundCloud Profile",
 	},
 	youtube: {
 		title: "Videos & Sets",
 		subtitle: "Watch the best moments and complete sets",
-		channelButton: "View YouTube Channel",
+		button: "View YouTube Channel",
+	},
+	instagram: {
+		title: "Follow me on Instagram",
+		subtitle: "Stay updated with my latest creations",
+		button: "View Instagram Profile",
 	},
 	contact: {
 		connect: "Connect",
