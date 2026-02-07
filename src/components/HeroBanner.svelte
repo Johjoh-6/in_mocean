@@ -13,7 +13,7 @@
 	let ctx: gsap.Context;
 
 	onMount(() => {
-		console.log("HeroBanner mounted with client:load!");
+		// console.log("HeroBanner mounted with client:load!");
 
 		gsap.registerPlugin(ScrollTrigger);
 
