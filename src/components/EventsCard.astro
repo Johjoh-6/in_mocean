@@ -1,6 +1,6 @@
 ---
-import { MapPin, Clock, ArrowRight } from "@lucide/astro";
 import { t, type Locale } from "../translations";
+import { getIcon } from "../utils/icons";
 
 type EventCard = {
 	date: string;
@@ -35,6 +35,10 @@ const getTime = (dateString: string): string => {
 	const minutes = date.getMinutes();
 	return `${hours}:${minutes.toString().padStart(2, "0")}`;
 };
+
+const MapPin = getIcon("mapPin");
+const Clock = getIcon("clock");
+const ArrowRight = getIcon("arrow-right");
 ---
 
 <div
