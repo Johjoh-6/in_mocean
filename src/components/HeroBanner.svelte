@@ -138,7 +138,7 @@
 				bind:this={heroTitle}
 				class="text-7xl md:text-9xl font-black mb-6 text-center"
 			>
-				DJ SUNSET
+				in_m’Ocean
 			</h1>
 			<p
 				bind:this={heroSubtitle}
