@@ -1,0 +1,145 @@
+---
+import InstagramAPI, { type InstagramPost } from "../api/instagram";
+import { getIcon } from "../utils/icons";
+
+interface Props {
+	post: InstagramPost;
+}
+
+const { post } = Astro.props;
+
+function formatDate(dateString: string): string {
+	const date = new Date(dateString);
+	return date.toLocaleDateString("en-US", {
+		month: "short",
+		day: "numeric",
+	});
+}
+
+const HeartIcon = getIcon("heart");
+const MessageCircleIcon = getIcon("message-circle");
+const ExternalLinkIcon = getIcon("external-link");
+---
+
+<article
+	class="group bg-slate-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-800 hover:border-pink-500/50 transition-all duration-300 transform hover:-translate-y-1"
+>
+	<!-- Media -->
+	<div class="relative aspect-square overflow-hidden">
+		{
+			post.media_type === "VIDEO" ? (
+				<video
+					poster={post.thumbnail_url}
+					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+					muted
+					loop
+					preload="metadata"
+				>
+					<source src={post.media_url} type="video/mp4" />
+					Your browser does not support the video tag.
+				</video>
+			) : (
+				<img
+					src={post.media_url}
+					alt={InstagramAPI.truncateCaption(post.caption || "", 50)}
+					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+					loading="lazy"
+				/>
+			)
+		}
+
+		<!-- Gradient Overlay -->
+		<div
+			class="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+		>
+		</div>
+
+		<!-- Media Type Badge -->
+		{
+			post.media_type === "VIDEO" && (
+				<div class="absolute top-4 right-4 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+					VIDEO
+				</div>
+			)
+		}
+
+		{
+			post.media_type === "CAROUSEL_ALBUM" && (
+				<div class="absolute top-4 right-4 bg-black/80 text-white px-2 py-1 rounded text-xs font-medium">
+					📷+
+				</div>
+			)
+		}
+
+		<!-- Date -->
+		<div
+			class="absolute top-4 left-4 bg-black/80 text-white px-2 py-1 rounded text-xs"
+		>
+			{formatDate(post.timestamp)}
+		</div>
+
+		<!-- View on Instagram Button -->
+		<div
+			class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+		>
+			<a
+				href={post.permalink}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="w-12 h-12 bg-pink-600 hover:bg-pink-500 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300 shadow-2xl"
+				aria-label="View post on Instagram"
+			>
+				<ExternalLinkIcon class="w-6 h-6 text-white" />
+			</a>
+		</div>
+	</div>
+
+	<!-- Post Info -->
+	{
+		(post.caption || post.like_count || post.comments_count) && (
+			<div class="p-4">
+				{post.caption && (
+					<p class="text-gray-300 text-sm mb-3 line-clamp-3 leading-relaxed">
+						{InstagramAPI.truncateCaption(post.caption, 120)}
+					</p>
+				)}
+
+				{(post.like_count || post.comments_count) && (
+					<div class="flex items-center gap-4 text-sm text-gray-500">
+						{post.like_count !== undefined && (
+							<div class="flex items-center gap-1">
+								<HeartIcon class="w-4 h-4" aria-hidden="true" />
+								<span>
+									{InstagramAPI.formatCount(post.like_count)}
+								</span>
+							</div>
+						)}
+
+						{post.comments_count !== undefined && (
+							<div class="flex items-center gap-1">
+								<MessageCircleIcon
+									class="w-4 h-4"
+									aria-hidden="true"
+								/>
+								<span>
+									{InstagramAPI.formatCount(
+										post.comments_count,
+									)}
+								</span>
+							</div>
+						)}
+					</div>
+				)}
+			</div>
+		)
+	}
+</article>
+
+<style>
+	.line-clamp-3 {
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

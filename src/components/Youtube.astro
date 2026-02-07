@@ -1,0 +1,196 @@
+---
+import { t, type Locale } from "../translations";
+import YouTubeAPI, { type YouTubeVideo } from "../api/youtube-api";
+import { getIcon } from "../utils/icons";
+import { getSocialLinkByName } from "../data";
+
+
+interface Props {
+  locale: Locale;
+  channelId?: string;
+  maxVideos?: number;
+}
+
+const { locale, channelId, maxVideos = 4 } = Astro.props;
+
+let videos: YouTubeVideo[] = [];
+let error: string | null = null;
+
+// Fetch videos from YouTube API only
+if (import.meta.env.YOUTUBE_API_KEY && (channelId || import.meta.env.YOUTUBE_CHANNEL_ID)) {
+  try {
+    const youtubeAPI = new YouTubeAPI(import.meta.env.YOUTUBE_API_KEY);
+    videos = await youtubeAPI.getChannelVideos(
+      channelId || import.meta.env.YOUTUBE_CHANNEL_ID,
+      maxVideos
+    );
+  } catch (e) {
+    error = "Unable to load videos. Please check your YouTube API configuration.";
+    console.error('YouTube API error:', e);
+  }
+} else {
+  error = "YouTube API not configured.";
+}
+
+function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+}
+
+const PlayIcon = getIcon('play');
+const EyeIcon = getIcon('eye');
+const YoutubeIcon = getIcon('youtube');
+
+const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
+
+---
+
+<section
+  id="videos"
+  class="relative py-20 bg-slate-950"
+  aria-labelledby="videos-title"
+>
+  <!-- Simple Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div
+      class="absolute inset-0"
+      style="background-image: radial-gradient(circle at 25% 25%, #ef4444 1px, transparent 1px), radial-gradient(circle at 75% 75%, #f97316 1px, transparent 1px); background-size: 50px 50px;"
+    ></div>
+  </div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <header class="text-center mb-16">
+        <h2
+          id="videos-title"
+          class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-r from-red-400 to-orange-400 bg-clip-text text-transparent font-bold leading-tight"
+        >
+          {t(locale, "youtube.title")}
+        </h2>
+        <p class="text-gray-400 text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+          {t(locale, "youtube.subtitle")}
+        </p>
+      </header>
+
+      {error ? (
+        <!-- Error State -->
+        <div class="text-center py-12">
+          <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 max-w-md mx-auto mb-8">
+            <p class="text-red-400 mb-4">{error}</p>
+            <p class="text-gray-400 text-sm">Configure your YouTube API key in environment variables to show videos.</p>
+          </div>
+
+          <!-- Channel Link Only -->
+          <a
+            href={YoutubeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-red-500/25"
+            aria-label="Visit YouTube channel"
+          >
+            <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
+            <span>{t(locale, "youtube.channelButton")}</span>
+          </a>
+        </div>
+      ) : (
+        <!-- Videos Grid -->
+        <>
+          <div class="grid md:grid-cols-2 gap-8 mb-16">
+            {videos.map((video) => (
+              <article class="group bg-slate-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-800 hover:border-red-500/50 transition-all duration-300 transform hover:-translate-y-1">
+                <!-- Thumbnail -->
+                <div class="relative aspect-video overflow-hidden">
+                  <img
+                    src={video.thumbnail}
+                    alt={`${video.title} thumbnail`}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+
+                  <!-- Gradient Overlay -->
+                  <div class="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+
+                  <!-- Play Button -->
+                  <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <a
+                      href={`https://www.youtube.com/watch?v=${video.id}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-16 h-16 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300 shadow-2xl"
+                      aria-label={`Play ${video.title}`}
+                    >
+                      <PlayIcon class="w-8 h-8 text-white ml-1" fill="currentColor" />
+                    </a>
+                  </div>
+
+                  <!-- Duration Badge -->
+                  <div class="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded text-sm font-medium">
+                    {video.duration}
+                  </div>
+
+                  <!-- Upload Date -->
+                  <div class="absolute top-4 left-4 bg-black/80 text-white px-2 py-1 rounded text-xs">
+                    {formatDate(video.publishedAt)}
+                  </div>
+                </div>
+
+                <!-- Video Info -->
+                <div class="p-6">
+                  <h3 class="text-xl text-white font-semibold mb-3 group-hover:text-red-400 transition-colors leading-tight">
+                    {video.title}
+                  </h3>
+
+                  <p class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+                    {video.description}
+                  </p>
+
+                  <div class="flex items-center justify-between text-sm text-gray-500">
+                    <div class="flex items-center gap-1">
+                      <EyeIcon class="w-4 h-4" aria-hidden="true" />
+                      <span>{video.views} views</span>
+                    </div>
+
+                    {video.likes && (
+                      <div class="flex items-center gap-1">
+                        <span>👍</span>
+                        <span>{video.likes}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <!-- YouTube Channel Link -->
+          <div class="text-center">
+            <a
+              href={YoutubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-red-500/25"
+              aria-label="Visit YouTube channel"
+            >
+              <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
+              <span>{t(locale, "youtube.channelButton")}</span>
+            </a>
+          </div>
+        </>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

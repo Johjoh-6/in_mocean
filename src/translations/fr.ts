@@ -28,6 +28,17 @@ export const translations = {
 		button: "Voir l'Agenda Complet",
 		details: "Voir détail",
 	},
+	soundcloud: {
+		title: "Mes Mixes",
+		subtitle:
+			"Écoutez et ressentez les vibrations de l'océan dans chaque piste",
+		profileButton: "Voir le Profil SoundCloud",
+	},
+	youtube: {
+		title: "Vidéos & Sets",
+		subtitle: "Regardez les meilleurs moments et sets complets",
+		channelButton: "Voir la Chaîne YouTube",
+	},
 	contact: {
 		connect: "Connect",
 		subtitle: "Suivez ma musique à travers les vagues sonores",

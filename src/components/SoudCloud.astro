@@ -1,0 +1,83 @@
+---
+import { Music2 } from "@lucide/astro";
+import { t, type Locale } from "../translations";
+import SoundCloudPlayer from "./SoundCloudPlayer.astro";
+import { getSocialLinkByName, musicTracks } from "../data";
+
+interface Props {
+	locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const backgroundImageUrl =
+	"https://images.unsplash.com/photo-1669669149068-f5ca82f42055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJhZGlzZSUyMGJlYWNoJTIwZ29sZGVuJTIwc3Vuc2V0fGVufDF8fHx8MTc3MDA0MjgzOXww&ixlib=rb-4.1.0&q=80&w=1080";
+
+const ScUrl = getSocialLinkByName("soundcloud")?.href || "";
+---
+
+<section id="music" class="relative bg-slate-950" aria-labelledby="mixes-title">
+	<!-- Background -->
+	<div class="absolute inset-0 opacity-5">
+		<div
+			class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll"
+			style={`background-image: url('${backgroundImageUrl}');`}
+		>
+		</div>
+	</div>
+	<div
+		class="container max-w-5xl mx-auto px-4 lg:px-8 relative z-10 flex flex-col gap-8"
+	>
+		<!-- Header Section -->
+		<div class="text-center">
+			<h2
+				id="music-title"
+				class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-bold leading-tight"
+			>
+				{t(locale, "soundcloud.title")}
+			</h2>
+
+			<p
+				class="text-gray-400 text-lg lg:text-xl max-w-2xl mx-auto leading-relaxed"
+			>
+				{t(locale, "soundcloud.subtitle")}
+			</p>
+		</div>
+
+		<!-- Mixes Grid -->
+		<div class="flex flex-col gap-8">
+			{
+				musicTracks.map((track, index) => (
+					<article class="bg-slate-900/50 backdrop-blur-sm rounded-xl flex flex-col gap-4 p-6 border border-slate-800 hover:border-orange-500/50 transition-all duration-300">
+						<header class="">
+							<h3 class="text-xl text-white font-semibold mb-2">
+								{track.title}
+							</h3>
+						</header>
+
+						<SoundCloudPlayer
+							url={track.url}
+							title={track.title}
+							color="ff5500"
+							maxheight={166}
+						/>
+					</article>
+				))
+			}
+		</div>
+
+		<!-- Profile Link -->
+		<div class="text-center">
+			<a
+				href={ScUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-orange-500/25"
+				aria-label="View full SoundCloud profile"
+			>
+				<Music2 class="w-6 h-6" aria-hidden="true" />
+				<span>{t(locale, "soundcloud.profileButton")}</span>
+			</a>
+		</div>
+	</div>
+</section>

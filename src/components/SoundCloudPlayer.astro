@@ -1,0 +1,49 @@
+---
+interface Props {
+	url: string;
+	title?: string;
+	maxheight?: number;
+	color?: string;
+	auto_play?: boolean;
+	show_comments?: boolean;
+}
+
+const {
+	url,
+	title = "SoundCloud Track",
+	maxheight = 166,
+	color = "ff5500",
+	auto_play = false,
+	show_comments = true,
+} = Astro.props;
+
+import { SoundCloudOEmbed } from "../api/soundcloud-oembed";
+
+const oembed = new SoundCloudOEmbed();
+const embedData = await oembed.getEmbed(url, {
+	maxheight,
+	color,
+	auto_play,
+	show_comments,
+});
+---
+
+<div class="soundcloud-embed">
+	{
+		embedData ? (
+			<div set:html={embedData.html} />
+		) : (
+			<div class="fallback bg-slate-800 rounded-lg p-6 text-center">
+				<p class="text-gray-400 mb-4">Unable to load track</p>
+				<a
+					href={url}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="text-orange-400 hover:text-orange-300"
+				>
+					{title}
+				</a>
+			</div>
+		)
+	}
+</div>
