@@ -1,7 +1,8 @@
 ---
-import { Calendar } from "@lucide/astro";
 import { t, type Locale } from "../translations";
 import EventsCard from "./EventsCard.astro";
+import { events, getSocialLinkByName } from "../data";
+import { getIcon } from "../utils/icons";
 
 interface Props {
 	locale: Locale;
@@ -9,32 +10,10 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const events = [
-	{
-		date: "03/15/2026 17:00:00",
-		title: "Sunset Beach Festival",
-		location: "Praia Mole, Florianópolis",
-		image: "https://images.unsplash.com/photo-1610816931633-564daed99c91?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHBhcnR5JTIwc3Vuc2V0fGVufDF8fHx8MTc2OTk0OTQ4MXww&ixlib=rb-4.1.0&q=80&w=1080",
-		color: "from-orange-500 to-pink-500",
-	},
-	{
-		date: "03/22/2026 20:00:00",
-		title: "Ocean Vibes Night",
-		location: "Blue Beach Club, São Paulo",
-		image: "https://images.unsplash.com/photo-1658058777605-085da119d699?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5zZXQlMjBvY2VhbiUyMERKfGVufDF8fHx8MTc3MDA0MDczOHww&ixlib=rb-4.1.0&q=80&w=1080",
-		color: "from-blue-500 to-purple-500",
-	},
-	{
-		date: "05/04/2026 17:30:00",
-		title: "Golden Hour Sessions",
-		location: "Jurerê Beach, Florianópolis",
-		image: "https://images.unsplash.com/photo-1720301024349-89a536d8f540?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHN1bnNldCUyMGdvbGRlbiUyMGhvdXJ8ZW58MXx8fHwxNzcwMDQwNzM4fDA&ixlib=rb-4.1.0&q=80&w=1080",
-		color: "from-yellow-500 to-orange-500",
-	},
-];
-
 const backgroundImageUrl =
 	"https://images.unsplash.com/photo-1695289261018-74050ecf18b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5zZXQlMjBiZWFjaCUyMHBpbmslMjBza3l8ZW58MXx8fHwxNzcwMDQyODM4fDA&ixlib=rb-4.1.0&q=80&w=1080";
+const IgUrl = getSocialLinkByName("instagram")?.href || "";
+const Calendar = getIcon("calendar");
 ---
 
 <section
@@ -46,7 +25,7 @@ const backgroundImageUrl =
 		class="absolute inset-0 bg-cover bg-center bg-no-repeat"
 		style={`background-image: url('${backgroundImageUrl}');`}
 		role="img"
-		aria-label="Sunset beach background"
+		aria-label="in_m’Ocean beach background"
 	>
 		<div class="absolute inset-0 bg-slate-950/75 backdrop-blur-[1px]"></div>
 	</div>
@@ -79,7 +58,7 @@ const backgroundImageUrl =
 
 		<div class="text-center">
 			<a
-				href="https://instagram.com/djsunset"
+				href={IgUrl}
 				target="_blank"
 				rel="noopener noreferrer"
 				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-full text-lg font-medium hover:from-pink-600 hover:to-purple-700 focus:from-pink-600 focus:to-purple-700 focus:outline-none focus:ring-4 focus:ring-pink-500/30 transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30 transform hover:-translate-y-1"
