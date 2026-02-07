@@ -2,22 +2,21 @@
 import Layout from "../layouts/Layout.astro";
 import HeroBanner from "../components/HeroBanner.svelte";
 import About from "../components/About.astro";
-import Contact from "../components/Contact.astro";
 import Events from "../components/Events.astro";
-
-import { t } from "../translations";
+import SoudCloud from "../components/SoudCloud.astro";
+import Youtube from "../components/Youtube.astro";
+import Instagram from "../components/Instagram.astro";
+import Contact from "../components/Contact.astro";
 
 const locale = "en";
 ---
 
 <Layout locale={locale}>
 	<HeroBanner client:load />
-	<!-- Next component/content -->
 	<About locale={locale} />
 	<Events locale={locale} />
-	<section class="h-screen bg-white flex items-center justify-center">
-		<h2 class="text-4xl text-black">Next Section</h2>
-	</section>
-	<div class="h-[200vh] bg-amber-500"></div>
+	<SoudCloud locale={locale} />
+	<Youtube locale={locale} />
+	<Instagram locale={locale} />
 	<Contact locale={locale} />
 </Layout>
