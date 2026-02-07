@@ -7,10 +7,13 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const year = new Date().getFullYear();
+const currentYear = new Date().getFullYear();
+const startYear = 2026;
 
 const copyright =
-	year == 2026 ? `©${year} DJ Sunset` : `©2026 - ${year} DJ Sunset`;
+	currentYear === startYear
+		? `© ${currentYear} in_m’Ocean`
+		: `© ${startYear} - ${currentYear} in_m’Ocean`;
 ---
 
 <footer
