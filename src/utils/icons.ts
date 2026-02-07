@@ -9,6 +9,9 @@ import {
 	Heart,
 	Play,
 	Eye,
+	MapPin,
+	Clock,
+	ArrowRight,
 	type AstroComponent,
 } from "@lucide/astro";
 
@@ -29,6 +32,9 @@ export const iconMap: Record<string, AstroComponent> = {
 	"message-circle": MessageCircle,
 	play: Play,
 	eye: Eye,
+	mapPin: MapPin,
+	clock: Clock,
+	"arrow-right": ArrowRight,
 };
 
 export function getIcon(iconName: string): AstroComponent {
