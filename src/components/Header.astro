@@ -1,6 +1,5 @@
 ---
-import Waves from "@lucide/astro/icons/waves";
-import Music from "@lucide/astro/icons/music";
+import { getIcon } from "../utils/icons";
 import { t, type Locale } from "../translations";
 
 interface Props {
@@ -8,6 +7,9 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+
+const Waves = getIcon("waves");
+const Music = getIcon("music");
 ---
 
 <header
@@ -20,7 +22,7 @@ const { locale } = Astro.props;
 				<Waves class="w-5 h-5 text-orange-400" />
 				<Music class="w-5 h-5 text-orange-400" />
 			</div>
-			<p class="text-xl text-white">DJ SUNSET</p>
+			<p class="text-xl text-white">in_m’Ocean</p>
 		</div>
 
 		<nav class="hidden md:flex items-center gap-8">
