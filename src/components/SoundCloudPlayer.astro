@@ -31,7 +31,7 @@ const embedData = await oembed.getEmbed(url, {
 <div class="soundcloud-embed">
 	{
 		embedData ? (
-			<div set:html={embedData.html} />
+			<div title={title} set:html={embedData.html} />
 		) : (
 			<div class="fallback bg-slate-800 rounded-lg p-6 text-center">
 				<p class="text-gray-400 mb-4">Unable to load track</p>
