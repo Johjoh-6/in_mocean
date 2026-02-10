@@ -77,7 +77,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
         </p>
       </header>
 
-      {error ? (
+      {error || !videos.length ? (
         <!-- Error State -->
         <div class="text-center py-12">
           <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 max-w-md mx-auto mb-8">
@@ -94,7 +94,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
             aria-label="Visit YouTube channel"
           >
             <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
-            <span>{t(locale, "youtube.channelButton")}</span>
+            <span>{t(locale, "youtube.button")}</span>
           </a>
         </div>
       ) : (
@@ -177,7 +177,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
               aria-label="Visit YouTube channel"
             >
               <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
-              <span>{t(locale, "youtube.channelButton")}</span>
+              <span>{t(locale, "youtube.button")}</span>
             </a>
           </div>
         </>
