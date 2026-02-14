@@ -62,8 +62,11 @@ class YouTubeAPI {
 			});
 
 			const videoIds = searchResponse.items
-				.map((item: any) => item.id.videoId)
+				?.map((item: any) => item.id.videoId)
+				.filter(Boolean)
 				.join(",");
+
+			if (!videoIds) return [];
 
 			// Get video details including duration and statistics
 			const videoResponse = await this.makeRequest("/videos", {
