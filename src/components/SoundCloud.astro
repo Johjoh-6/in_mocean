@@ -1,8 +1,8 @@
 ---
-import { Music2 } from "@lucide/astro";
 import { t, type Locale } from "../translations";
 import SoundCloudPlayer from "./SoundCloudPlayer.astro";
 import { getSocialLinkByName, musicTracks } from "../data";
+import { getIcon } from "../utils/icons";
 
 interface Props {
 	locale: Locale;
@@ -14,6 +14,7 @@ const backgroundImageUrl =
 	"https://images.unsplash.com/photo-1669669149068-f5ca82f42055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJhZGlzZSUyMGJlYWNoJTIwZ29sZGVuJTIwc3Vuc2V0fGVufDF8fHx8MTc3MDA0MjgzOXww&ixlib=rb-4.1.0&q=80&w=1080";
 
 const ScUrl = getSocialLinkByName("soundcloud")?.href || "";
+const SCIcon = getIcon("soundcloud");
 ---
 
 <section id="music" class="relative bg-slate-950" aria-labelledby="mixes-title">
@@ -75,7 +76,7 @@ const ScUrl = getSocialLinkByName("soundcloud")?.href || "";
 				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-orange-500/25"
 				aria-label="View full SoundCloud profile"
 			>
-				<Music2 class="w-6 h-6" aria-hidden="true" />
+				<SCIcon class="w-6 h-6" aria-hidden="true" />
 				<span>{t(locale, "soundcloud.button")}</span>
 			</a>
 		</div>

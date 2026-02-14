@@ -17,12 +17,14 @@ import {
 
 import InstagramIcon from "../icons/InstagramIcon.astro";
 import YouTubeIcon from "../icons/YouTubeIcon.astro";
+import SoundCloudIcon from "../icons/SoundCloudIcon.astro";
 
 // Map icon names to actual icon components
 export const iconMap: Record<string, AstroComponent> = {
 	instagram: InstagramIcon,
 	"music-2": Music2,
 	youtube: YouTubeIcon,
+	soundcloud: SoundCloudIcon,
 	mail: Mail,
 	"external-link": ExternalLink,
 	headphones: Headphones,
