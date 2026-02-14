@@ -1,5 +1,5 @@
 // ============================================
-// DJ SUNSET - MAIN DATA CONFIGURATION
+// IN_MOCEAN - MAIN DATA CONFIGURATION
 // ============================================
 
 // Stats
@@ -27,7 +27,7 @@ export const socialLinks = [
 		color: "from-purple-500 to-pink-500",
 	},
 	{
-		iconName: "music-2",
+		iconName: "soundcloud",
 		label: "SoundCloud",
 		handle: "soundcloud.com/in_m’Ocean",
 		href: "https://soundcloud.com/in_mocean",
