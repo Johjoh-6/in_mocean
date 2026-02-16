@@ -1,8 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import CardStats from "./CardStats.astro";
 
-import { stats } from "../data";
 import { getIcon } from "../utils/icons";
 
 interface Props {
@@ -10,6 +10,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+
+const stats = await getCollection("stats");
 
 // put a real image
 const djImage = {
@@ -126,13 +128,13 @@ const djImage = {
 					>
 						{
 							stats.map((stat) => {
-								const IconComponent = getIcon(stat.iconName);
+								const IconComponent = getIcon(stat.data.iconName);
 								return (
 									<div role="listitem">
 										<CardStats
 											icon={IconComponent}
-											value={stat.value}
-											label={t(locale, stat.label)}
+											value={stat.data.value}
+											label={t(locale, stat.data.label)}
 										/>
 									</div>
 								);

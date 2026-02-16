@@ -1,10 +1,26 @@
 [
-	{ "iconName": "music-2", "value": "500+", "label": "about.stats.shows" },
 	{
+		"id": "shows",
+		"iconName": "music-2",
+		"value": "3",
+		"label": "about.stats.shows"
+	},
+	{
+		"id": "followers",
 		"iconName": "headphone",
 		"value": "10k+",
 		"label": "about.stats.followers"
 	},
-	{ "iconName": "radio", "value": "50+", "label": "about.stats.cities" },
-	{ "iconName": "waves", "value": "1M+", "label": "about.stats.plays" }
+	{
+		"id": "cities",
+		"iconName": "radio",
+		"value": "2",
+		"label": "about.stats.cities"
+	},
+	{
+		"id": "plays",
+		"iconName": "waves",
+		"value": "5k",
+		"label": "about.stats.plays"
+	}
 ]
