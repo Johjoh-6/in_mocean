@@ -10,83 +10,97 @@ export interface InstagramPost {
 	comments_count?: number;
 }
 
+interface GraphAPIError {
+	error?: {
+		message?: string;
+		type?: string;
+		code?: number;
+		fbtrace_id?: string;
+	};
+}
+
 export default class InstagramAPI {
 	private accessToken: string;
-	private baseUrl = "https://graph.instagram.com";
+	private igUserId: string;
+	private baseUrl = "https://graph.facebook.com/v20.0";
 
-	constructor(accessToken: string) {
+	constructor(accessToken: string, igUserId: string) {
 		this.accessToken = accessToken;
+		this.igUserId = igUserId;
+	}
+
+	private buildUrl(path: string, params: Record<string, string>): string {
+		const url = new URL(`${this.baseUrl}${path}`);
+		Object.entries(params).forEach(([key, value]) => {
+			url.searchParams.set(key, value);
+		});
+		url.searchParams.set("access_token", this.accessToken);
+		return url.toString();
+	}
+
+	private async request<T>(
+		path: string,
+		params: Record<string, string>,
+	): Promise<T> {
+		const response = await fetch(this.buildUrl(path, params));
+		const data = (await response.json()) as T & GraphAPIError;
+
+		if (!response.ok || (data as GraphAPIError).error) {
+			const apiError = (data as GraphAPIError).error;
+			const detail =
+				apiError?.message ||
+				`${response.status} ${response.statusText}`;
+			throw new Error(`Instagram Graph API error: ${detail}`);
+		}
+
+		return data as T;
 	}
 
 	/**
-	 * Get recent posts from Instagram Basic Display API
-	 * Note: This requires a long-lived access token from Instagram Basic Display API
+	 * Get recent posts from Instagram Graph API (Creator/Business account)
+	 * Requires:
+	 * - Instagram account connected to a Facebook Page
+	 * - Valid User Access Token with instagram_basic (and related) permissions
+	 * - Instagram User ID (igUserId)
 	 */
 	async getRecentPosts(limit: number = 6): Promise<InstagramPost[]> {
-		try {
-			const response = await fetch(
-				`${this.baseUrl}/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp&limit=${limit}&access_token=${this.accessToken}`,
-			);
+		type MediaListResponse = { data?: InstagramPost[] };
 
-			if (!response.ok) {
-				throw new Error(
-					`Instagram API error: ${response.status} ${response.statusText}`,
-				);
-			}
+		const data = await this.request<MediaListResponse>(
+			`/${this.igUserId}/media`,
+			{
+				fields: "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp",
+				limit: String(limit),
+			},
+		);
 
-			const data = await response.json();
-
-			if (data.error) {
-				throw new Error(`Instagram API error: ${data.error.message}`);
-			}
-
-			return data.data || [];
-		} catch (error) {
-			console.error("Error fetching Instagram posts:", error);
-			throw error;
-		}
+		return data.data || [];
 	}
 
 	/**
-	 * Get posts with engagement metrics (requires Instagram Graph API - business accounts)
+	 * Get posts with engagement metrics
+	 * Note: like_count/comments_count availability can depend on permissions/app mode.
 	 */
 	async getPostsWithMetrics(limit: number = 6): Promise<InstagramPost[]> {
-		try {
-			const response = await fetch(
-				`${this.baseUrl}/me/media?fields=id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,like_count,comments_count&limit=${limit}&access_token=${this.accessToken}`,
-			);
+		type MediaListResponse = { data?: InstagramPost[] };
 
-			if (!response.ok) {
-				throw new Error(
-					`Instagram API error: ${response.status} ${response.statusText}`,
-				);
-			}
+		const data = await this.request<MediaListResponse>(
+			`/${this.igUserId}/media`,
+			{
+				fields: "id,caption,media_type,media_url,thumbnail_url,permalink,timestamp,like_count,comments_count",
+				limit: String(limit),
+			},
+		);
 
-			const data = await response.json();
-
-			if (data.error) {
-				throw new Error(`Instagram API error: ${data.error.message}`);
-			}
-
-			return data.data || [];
-		} catch (error) {
-			console.error(
-				"Error fetching Instagram posts with metrics:",
-				error,
-			);
-			throw error;
-		}
+		return data.data || [];
 	}
 
 	/**
 	 * Format engagement count for display
 	 */
 	static formatCount(count: number): string {
-		if (count >= 1000000) {
-			return `${(count / 1000000).toFixed(1)}M`;
-		} else if (count >= 1000) {
-			return `${(count / 1000).toFixed(1)}K`;
-		}
+		if (count >= 1000000) return `${(count / 1000000).toFixed(1)}M`;
+		if (count >= 1000) return `${(count / 1000).toFixed(1)}K`;
 		return count.toString();
 	}
 
@@ -95,11 +109,7 @@ export default class InstagramAPI {
 	 */
 	static truncateCaption(caption: string, maxLength: number = 100): string {
 		if (!caption) return "";
-
-		if (caption.length <= maxLength) {
-			return caption;
-		}
-
+		if (caption.length <= maxLength) return caption;
 		return caption.substring(0, maxLength).trim() + "...";
 	}
 }

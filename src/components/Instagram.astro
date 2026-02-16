@@ -16,13 +16,16 @@ let posts: InstagramPost[] = [];
 let error: string | null = null;
 
 // Fetch posts from Instagram API
-if (import.meta.env.INSTAGRAM_ACCESS_TOKEN) {
+if (import.meta.env.INSTAGRAM_ACCESS_TOKEN && import.meta.env.INSTAGRAM_IG_USER_ID) {
   try {
-    const instagramAPI = new InstagramAPI(import.meta.env.INSTAGRAM_ACCESS_TOKEN);
+    const instagramAPI = new InstagramAPI(
+      import.meta.env.INSTAGRAM_ACCESS_TOKEN,
+      import.meta.env.INSTAGRAM_IG_USER_ID
+    );
     posts = await instagramAPI.getRecentPosts(maxPosts);
   } catch (e) {
     error = "Unable to load Instagram posts. Please check your Instagram API configuration.";
-    console.error('Instagram API error:', e);
+    console.error("Instagram API error:", e);
   }
 } else {
   error = "Instagram API not configured.";
@@ -86,7 +89,26 @@ const IgUrl = getSocialLinkByName("instagram")?.href || "";
             <span>{t(locale, "instagram.button")}</span>
           </a>
         </div>
-      ) : (
+      )  : posts.length === 0 ? (
+       <!-- Empty State -->
+       <div class="text-center py-12">
+         <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 max-w-md mx-auto mb-8">
+           <p class="text-gray-300 mb-2">No posts found.</p>
+           <p class="text-gray-400 text-sm">This Instagram profile has no recent public posts to display.</p>
+         </div>
+
+         <a
+           href={IgUrl}
+           target="_blank"
+           rel="noopener noreferrer"
+           class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
+           aria-label="Visit Instagram profile"
+         >
+           <IgIcon class="w-6 h-6" aria-hidden="true" />
+           <span>{t(locale, "instagram.button")}</span>
+         </a>
+       </div>
+     ): (
         <!-- Posts Grid -->
         <>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16">
