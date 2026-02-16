@@ -13,7 +13,7 @@ export const socialLinks = [
 	{
 		iconName: "instagram",
 		label: "Instagram",
-		handle: "@in_m’Ocean",
+		handle: "@in__m’Ocean",
 		href: "https://instagram.com/in_m’Ocean",
 		color: "from-purple-500 to-pink-500",
 	},
@@ -34,8 +34,8 @@ export const socialLinks = [
 	{
 		iconName: "mail",
 		label: "Email",
-		handle: "contato@in_m’Ocean.com",
-		href: "mailto:contato@in_m’Ocean.com",
+		handle: "contacto@musicinnmocean.com",
+		href: "mailto:contacto@musicinnmocean.com",
 		color: "from-blue-500 to-blue-600",
 	},
 ];
