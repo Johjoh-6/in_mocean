@@ -2,136 +2,70 @@
 import { getSocialLinkByName } from "../data";
 import { t, type Locale } from "../translations";
 import { getIcon } from "../utils/icons";
-import InstagramAPI, { type InstagramPost } from "../api/instagram";
 import InstagramCard from "./InstagramCard.astro";
+import { getCollection } from "astro:content";
 
 interface Props {
-  locale: Locale;
-  maxPosts?: number;
+	locale: Locale;
 }
 
-const { locale, maxPosts = 6 } = Astro.props;
+const { locale } = Astro.props;
 
-let posts: InstagramPost[] = [];
-let error: string | null = null;
-
-// Fetch posts from Instagram API
-if (import.meta.env.INSTAGRAM_ACCESS_TOKEN && import.meta.env.INSTAGRAM_IG_USER_ID) {
-  try {
-    const instagramAPI = new InstagramAPI(
-      import.meta.env.INSTAGRAM_ACCESS_TOKEN,
-      import.meta.env.INSTAGRAM_IG_USER_ID
-    );
-    posts = await instagramAPI.getRecentPosts(maxPosts);
-  } catch (e) {
-    error = "Unable to load Instagram posts. Please check your Instagram API configuration.";
-    console.error("Instagram API error:", e);
-  }
-} else {
-  error = "Instagram API not configured.";
-}
-
-const backgroundImageUrl = {
-  src: "https://images.unsplash.com/photo-1600542552868-56ed242290e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxESiUyMHR1cm50YWJsZXMlMjBuaWdodHxlbnwxfHx8fDE3NzAwNDA3Mzl8MA&ixlib=rb-4.0&q=80&w=1080",
-  alt: "in_m'Ocean performing with turntables at night",
-  blurDataURL: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGBkaGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-};
+const posts = await getCollection("instagram");
 
 const IgIcon = getIcon("instagram");
 const IgUrl = getSocialLinkByName("instagram")?.href || "";
 ---
 
 <section
-  id="instagram"
-  class="relative py-20 bg-slate-950"
-  aria-labelledby="instagram-title"
+	id="instagram"
+	class="relative py-20 bg-slate-950"
+	aria-labelledby="instagram-title"
 >
-  <!-- Background -->
-  <div class="absolute inset-0 opacity-5">
-    <div
-      class="absolute inset-0"
-      style="background-image: radial-gradient(circle at 25% 25%, #ec4899 1px, transparent 1px), radial-gradient(circle at 75% 75%, #8b5cf6 1px, transparent 1px); background-size: 50px 50px;"
-    ></div>
-  </div>
+	<!-- Background -->
+	<div class="absolute inset-0 opacity-5">
+		<div
+			class="absolute inset-0"
+			style="background-image: radial-gradient(circle at 25% 25%, #ec4899 1px, transparent 1px), radial-gradient(circle at 75% 75%, #8b5cf6 1px, transparent 1px); background-size: 50px 50px;"
+		>
+		</div>
+	</div>
 
-  <div class="container mx-auto px-4 lg:px-8 relative z-10">
-    <div class="max-w-6xl mx-auto">
-      <!-- Header -->
-      <header class="text-center mb-16">
-        <h2
-          id="instagram-title"
-          class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-br from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-bold leading-tight"
-        >
-          {t(locale, "instagram.title")}
-        </h2>
-        <p class="text-gray-400 text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
-          {t(locale, "instagram.subtitle")}
-        </p>
-      </header>
+	<div class="container mx-auto px-4 lg:px-8 relative z-10">
+		<div class="max-w-6xl mx-auto">
+			<!-- Header -->
+			<header class="text-center mb-16">
+				<h2
+					id="instagram-title"
+					class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-br from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-bold leading-tight"
+				>
+					{t(locale, "instagram.title")}
+				</h2>
+				<p
+					class="text-gray-400 text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
+				>
+					{t(locale, "instagram.subtitle")}
+				</p>
+			</header>
 
-      {error ? (
-        <!-- Error State -->
-        <div class="text-center py-12">
-          <div class="bg-pink-900/20 border border-pink-500/50 rounded-lg p-6 max-w-md mx-auto mb-8">
-            <p class="text-pink-400 mb-4">{error}</p>
-            <p class="text-gray-400 text-sm">Configure your Instagram access token in environment variables to show posts.</p>
-          </div>
+			<!-- Gallery Grid -->
+			<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16">
+				{posts.map((post) => <InstagramCard post={post.data} />)}
+			</div>
 
-          <!-- Instagram Link Only -->
-          <a
-            href={IgUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
-            aria-label="Visit Instagram profile"
-          >
-            <IgIcon class="w-6 h-6" aria-hidden="true" />
-            <span>{t(locale, "instagram.button")}</span>
-          </a>
-        </div>
-      )  : posts.length === 0 ? (
-       <!-- Empty State -->
-       <div class="text-center py-12">
-         <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 max-w-md mx-auto mb-8">
-           <p class="text-gray-300 mb-2">No posts found.</p>
-           <p class="text-gray-400 text-sm">This Instagram profile has no recent public posts to display.</p>
-         </div>
-
-         <a
-           href={IgUrl}
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
-           aria-label="Visit Instagram profile"
-         >
-           <IgIcon class="w-6 h-6" aria-hidden="true" />
-           <span>{t(locale, "instagram.button")}</span>
-         </a>
-       </div>
-     ): (
-        <!-- Posts Grid -->
-        <>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16">
-            {posts.map((post) => (
-              <InstagramCard post={post} />
-            ))}
-          </div>
-
-          <!-- Instagram Profile Link -->
-          <footer class="text-center">
-            <a
-              href={IgUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
-              aria-label="Visit Instagram profile"
-            >
-              <IgIcon class="w-6 h-6" aria-hidden="true" />
-              <span>{t(locale, "instagram.button")}</span>
-            </a>
-          </footer>
-        </>
-      )}
-    </div>
-  </div>
+			<!-- Instagram Profile Link -->
+			<footer class="text-center">
+				<a
+					href={IgUrl}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
+					aria-label="Visit Instagram profile"
+				>
+					<IgIcon class="w-6 h-6" aria-hidden="true" />
+					<span>{t(locale, "instagram.button")}</span>
+				</a>
+			</footer>
+		</div>
+	</div>
 </section>

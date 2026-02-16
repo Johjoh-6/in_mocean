@@ -22,14 +22,12 @@ const eventsSchema = (image: Function) =>
 		image: z.union([image(), z.string().url("image must be a valid URL")]),
 	});
 
-const instagramSchema = z.object({
-	id: z.string().min(1),
-	image: z.string().url("image must be a valid URL"),
-	alt: z.string().min(1, "alt is required"),
-	caption: z.string().optional(),
-	href: z.string().url("href must be a valid URL").optional(),
-	date: z.string().optional(),
-});
+const instagramSchema = (image: Function) =>
+	z.object({
+		alt: z.string().min(1, "alt is required"),
+		href: z.string().url("href must be a valid URL"),
+		image: z.union([image(), z.string().url("image must be a valid URL")]),
+	});
 
 //
 // TYPES
@@ -37,7 +35,7 @@ const instagramSchema = z.object({
 
 export type Track = z.infer<typeof tracksSchema>;
 export type Event = z.infer<ReturnType<typeof eventsSchema>>;
-export type PostIG = z.infer<typeof instagramSchema>;
+export type PostIG = z.infer<ReturnType<typeof instagramSchema>>;
 
 //
 // COLLECTIONS
@@ -54,8 +52,8 @@ const events = defineCollection({
 });
 
 const instagram = defineCollection({
-	loader: file("src/content/instagram.json"),
-	schema: instagramSchema,
+	loader: glob({ pattern: "**/*.md", base: "src/content/instagram" }),
+	schema: ({ image }) => instagramSchema(image),
 });
 
 export const collections = {
