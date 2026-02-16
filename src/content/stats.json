@@ -1,0 +1,10 @@
+[
+	{ "iconName": "music-2", "value": "500+", "label": "about.stats.shows" },
+	{
+		"iconName": "headphone",
+		"value": "10k+",
+		"label": "about.stats.followers"
+	},
+	{ "iconName": "radio", "value": "50+", "label": "about.stats.cities" },
+	{ "iconName": "waves", "value": "1M+", "label": "about.stats.plays" }
+]
