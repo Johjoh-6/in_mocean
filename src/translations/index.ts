@@ -4,13 +4,13 @@ import type { GetStaticPaths } from "astro";
 import { translations as en } from "../translations/en";
 import { translations as es } from "../translations/es";
 import { translations as fr } from "../translations/fr";
-import { translations as ptBr } from "../translations/pt-br";
+import { translations as pt } from "../translations/pt";
 
 const translations = {
 	en,
 	es,
 	fr,
-	"pt-br": ptBr,
+	pt,
 } as const;
 
 export type Locale = keyof typeof translations;

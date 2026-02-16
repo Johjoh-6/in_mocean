@@ -19,7 +19,7 @@ export const translations = {
 			shows: "Shows Realizados",
 			followers: "Seguidores",
 			cities: "Ciudades Visitadas",
-			plays: "Plays Online",
+			locations: "Locaciones",
 		},
 	},
 	events: {
