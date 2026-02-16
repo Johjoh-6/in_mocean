@@ -6,9 +6,17 @@ interface Props {
 const { error } = Astro.props;
 ---
 
-<div class="">
-	<h1 class="">404</h1>
-	<p class="">
-		{error instanceof Error ? error.message : "Page not found"}
+<div class="text-center">
+	<h1 class="text-9xl font-bold text-gray-800">404</h1>
+	<p class="text-2xl font-light text-gray-600 mt-4">Oops! Page not found</p>
+	<p class="text-gray-500 mt-4 mb-8">
+		The page you are looking for might have been removed or is temporarily
+		unavailable.
 	</p>
+	<a
+		href="/"
+		class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
+	>
+		Go back to homepage
+	</a>
 </div>
