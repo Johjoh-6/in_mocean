@@ -1,16 +1,9 @@
-import { file } from "astro/loaders";
+import { file, glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 //
 // SCHEMAS
 //
-
-const statsSchema = z.object({
-	id: z.string().min(1),
-	iconName: z.string().min(1, "iconName is required"),
-	value: z.string().min(1, "value is required"),
-	label: z.string().min(1, "label is required"),
-});
 
 const tracksSchema = z.object({
 	id: z.string().min(1),
@@ -18,15 +11,16 @@ const tracksSchema = z.object({
 	url: z.string().url("url must be a valid URL"),
 });
 
-const eventsSchema = z.object({
-	id: z.string().min(1),
-	date: z.string().min(1, "date is required"),
-	title: z.string().min(1, "title is required"),
-	location: z.string().min(1, "location is required"),
-	url: z.string().url("url must be a valid URL"),
-	image: z.string().url("image must be a valid URL"),
-	color: z.string().min(1, "color is required"),
-});
+const eventsSchema = (image: Function) =>
+	z.object({
+		date: z.string().min(1, "date is required"),
+		title: z.string().min(1, "title is required"),
+		city: z.string().min(1, "city is required"),
+		country: z.string().min(1, "country is required"),
+		location: z.string().min(1, "location is required"),
+		url: z.string().url("url must be a valid URL"),
+		image: z.union([image(), z.string().url("image must be a valid URL")]),
+	});
 
 const instagramSchema = z.object({
 	id: z.string().min(1),
@@ -41,19 +35,13 @@ const instagramSchema = z.object({
 // TYPES
 //
 
-export type Stat = z.infer<typeof statsSchema>;
 export type Track = z.infer<typeof tracksSchema>;
-export type Event = z.infer<typeof eventsSchema>;
+export type Event = z.infer<ReturnType<typeof eventsSchema>>;
 export type PostIG = z.infer<typeof instagramSchema>;
 
 //
 // COLLECTIONS
 //
-
-const stats = defineCollection({
-	loader: file("src/content/stats.json"),
-	schema: statsSchema,
-});
 
 const tracks = defineCollection({
 	loader: file("src/content/tracks.json"),
@@ -61,8 +49,8 @@ const tracks = defineCollection({
 });
 
 const events = defineCollection({
-	loader: file("src/content/events.json"),
-	schema: eventsSchema,
+	loader: glob({ pattern: "**/*.md", base: "src/content/events" }),
+	schema: ({ image }) => eventsSchema(image),
 });
 
 const instagram = defineCollection({
@@ -71,7 +59,6 @@ const instagram = defineCollection({
 });
 
 export const collections = {
-	stats,
 	tracks,
 	events,
 	instagram,

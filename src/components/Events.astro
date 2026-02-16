@@ -11,12 +11,13 @@ interface Props {
 
 const { locale } = Astro.props;
 
-// get the 3 soonest events
+// get the 3 soonest events not already past
 const events = (await getCollection("events"))
 	.sort(
 		(a, b) =>
 			new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
 	)
+	.filter((event) => new Date(event.data.date) > new Date())
 	.slice(0, 3);
 
 const backgroundImageUrl =

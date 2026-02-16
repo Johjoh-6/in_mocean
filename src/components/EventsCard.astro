@@ -1,19 +1,11 @@
 ---
 import { t, type Locale } from "../translations";
 import { getIcon } from "../utils/icons";
-
-type EventCard = {
-	date: string;
-	title: string;
-	location: string;
-	image: string;
-	color: string;
-	url: string;
-};
+import type { Event } from "../content.config";
 
 interface Props {
 	locale: Locale;
-	event: EventCard;
+	event: Event;
 }
 
 const { event, locale } = Astro.props;
@@ -37,6 +29,11 @@ const getTime = (dateString: string): string => {
 	return `${hours}:${minutes.toString().padStart(2, "0")}`;
 };
 
+const getTwoLastNumberOfYear = (dateString: string): number => {
+	const date = new Date(dateString);
+	return date.getFullYear() % 100;
+};
+
 const MapPin = getIcon("mapPin");
 const Clock = getIcon("clock");
 const ArrowRight = getIcon("arrow-right");
@@ -47,14 +44,17 @@ const ArrowRight = getIcon("arrow-right");
 >
 	<div class="flex flex-col md:flex-row items-stretch">
 		<div
-			class={`md:w-24 flex md:flex-col items-center justify-center p-4 bg-lineart-to-br ${event.color} text-white`}
+			class="md:w-24 flex md:flex-col items-center justify-center p-4 bg-linear-to-br from-pink-500 to-purple-600 text-white"
 		>
 			<div class="text-center">
 				<div class="text-3xl md:text-4xl font-bold mb-1">
 					{getDateNumber(event.date)}
 				</div>
-				<div class="text-xs md:text-sm uppercase tracking-wider">
+				<div class="text-xs md:text-sm uppercase tracking-widerm b-1">
 					{getMonth(event.date)}
+				</div>
+				<div class="text-3xl md:text-4xl font-black">
+					{getTwoLastNumberOfYear(event.date)}
 				</div>
 			</div>
 		</div>
@@ -70,7 +70,11 @@ const ArrowRight = getIcon("arrow-right");
 				<div class="space-y-2 mb-4">
 					<div class="flex items-center gap-2 text-gray-400 text-sm">
 						<MapPin class="w-4 h-4 text-pink-400" />
-						<span>{event.location}</span>
+						<span
+							>{event.location}, {event.city}, {
+								event.country
+							}</span
+						>
 					</div>
 					<div class="flex items-center gap-2 text-gray-400 text-sm">
 						<Clock class="w-4 h-4 text-pink-400" />
@@ -105,7 +109,7 @@ const ArrowRight = getIcon("arrow-right");
 	</div>
 
 	<div
-		class={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-br ${event.color} origin-left`}
+		class="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-br from-pink-500 to-purple-600 origin-left"
 	>
 	</div>
 </div>
