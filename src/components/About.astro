@@ -11,7 +11,9 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const stats = await getCollection("stats");
+const allEvents = await getCollection("events");
+const uniqueCities = new Set(allEvents.map(({ data }) => data.city));
+const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 
 // put a real image
 const djImage = {
@@ -126,20 +128,34 @@ const djImage = {
 						role="list"
 						aria-label="DJ Statistics"
 					>
-						{
-							stats.map((stat) => {
-								const IconComponent = getIcon(stat.data.iconName);
-								return (
-									<div role="listitem">
-										<CardStats
-											icon={IconComponent}
-											value={stat.data.value}
-											label={t(locale, stat.data.label)}
-										/>
-									</div>
-								);
-							})
-						}
+						<div role="listitem">
+							<CardStats
+								icon={getIcon("music-2")}
+								value={String(allEvents.length)}
+								label={t(locale, "about.stats.shows")}
+							/>
+						</div>
+						<div role="listitem">
+							<CardStats
+								icon={getIcon("headphone")}
+								value={"1k+"}
+								label={t(locale, "about.stats.followers")}
+							/>
+						</div>
+						<div role="listitem">
+							<CardStats
+								icon={getIcon("radio")}
+								value={String(uniqueCities.size)}
+								label={t(locale, "about.stats.cities")}
+							/>
+						</div>
+						<div role="listitem">
+							<CardStats
+								icon={getIcon("waves")}
+								value={String(uniqueLocations.size)}
+								label={t(locale, "about.stats.locations")}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
