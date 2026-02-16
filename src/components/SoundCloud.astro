@@ -1,7 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import SoundCloudPlayer from "./SoundCloudPlayer.astro";
-import { getSocialLinkByName, musicTracks } from "../data";
+import { getSocialLinkByName } from "../data";
 import { getIcon } from "../utils/icons";
 
 interface Props {
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+
+const musicTracks = await getCollection("tracks");
 
 const backgroundImageUrl =
 	"https://images.unsplash.com/photo-1669669149068-f5ca82f42055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJhZGlzZSUyMGJlYWNoJTIwZ29sZGVuJTIwc3Vuc2V0fGVufDF8fHx8MTc3MDA0MjgzOXww&ixlib=rb-4.1.0&q=80&w=1080";
@@ -48,17 +51,17 @@ const SCIcon = getIcon("soundcloud");
 		<!-- Mixes Grid -->
 		<div class="flex flex-col gap-8">
 			{
-				musicTracks.map((track, index) => (
+				musicTracks.map((track) => (
 					<article class="bg-slate-900/50 backdrop-blur-sm rounded-xl flex flex-col gap-4 p-6 border border-slate-800 hover:border-orange-500/50 transition-all duration-300">
 						<header class="">
 							<h3 class="text-xl text-white font-semibold mb-2">
-								{track.title}
+								{track.data.title}
 							</h3>
 						</header>
 
 						<SoundCloudPlayer
-							url={track.url}
-							title={track.title}
+							url={track.dataurl}
+							title={track.data.title}
 							color="ff5500"
 							maxheight={166}
 						/>
