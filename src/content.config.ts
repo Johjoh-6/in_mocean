@@ -31,6 +31,7 @@ const events = defineCollection({
 		date: z.string().min(1, "date is required"),
 		title: z.string().min(1, "title is required"),
 		location: z.string().min(1, "location is required"),
+		url: z.string().url("url must be a valid URL"),
 		image: z.string().url("image must be a valid URL"),
 		color: z.string().min(1, "color is required"),
 	}),

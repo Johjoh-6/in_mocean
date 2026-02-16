@@ -77,14 +77,16 @@ const ArrowRight = getIcon("arrow-right");
 					</div>
 				</div>
 
-				<button
+				<a
 					class="flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors group text-sm"
+					href={event.url}
+					target="_blank"
 				>
 					<span>{t(locale, "events.details")}</span>
 					<ArrowRight
 						class="w-4 h-4 group-hover:translate-x-1 transition-transform"
 					/>
-				</button>
+				</a>
 			</div>
 
 			<div class="md:w-48 h-32 md:h-auto relative overflow-hidden">

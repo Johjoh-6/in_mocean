@@ -1,7 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import EventsCard from "./EventsCard.astro";
-import { events, getSocialLinkByName } from "../data";
+import { getSocialLinkByName } from "../data";
 import { getIcon } from "../utils/icons";
 
 interface Props {
@@ -9,6 +10,14 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+
+// get the 3 soonest events
+const events = (await getCollection("events"))
+	.sort(
+		(a, b) =>
+			new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
+	)
+	.slice(0, 3);
 
 const backgroundImageUrl =
 	"https://images.unsplash.com/photo-1695289261018-74050ecf18b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5zZXQlMjBiZWFjaCUyMHBpbmslMjBza3l8ZW58MXx8fHwxNzcwMDQyODM4fDA&ixlib=rb-4.1.0&q=80&w=1080";
@@ -50,7 +59,7 @@ const Calendar = getIcon("calendar");
 			<div class="grid gap-8 md:gap-12">
 				{
 					events.map((event) => (
-						<EventsCard event={event} locale={locale} />
+						<EventsCard event={event.data} locale={locale} />
 					))
 				}
 			</div>
