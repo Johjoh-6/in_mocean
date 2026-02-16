@@ -27,8 +27,8 @@ export const socialLinks = [
 	{
 		iconName: "youtube",
 		label: "YouTube",
-		handle: "@in_m’Ocean",
-		href: "https://youtube.com/@in_m’Ocean",
+		handle: "@Musicin_mOcean",
+		href: "https://youtube.com/@Musicin_mOcean",
 		color: "from-red-500 to-red-600",
 	},
 	{
