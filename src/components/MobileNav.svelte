@@ -121,7 +121,7 @@
 	<span class="flex flex-col gap-1.5" aria-hidden="true">
 		<span
 			class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center {isOpen
-				? 'rotate-45 translate-y-[4px]'
+				? 'rotate-45 translate-y-1'
 				: ''}"
 		></span>
 		<span
@@ -131,7 +131,7 @@
 		></span>
 		<span
 			class="block w-6 h-0.5 bg-current transition-all duration-300 origin-center {isOpen
-				? '-rotate-45 -translate-y-[4px]'
+				? '-rotate-45 -translate-y-1'
 				: ''}"
 		></span>
 	</span>
@@ -140,7 +140,7 @@
 <!-- Backdrop (teleported to body) -->
 <div
 	bind:this={backdropEl}
-	class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[998] md:hidden transition-opacity duration-300 {isOpen
+	class="fixed inset-0 bg-black/60 backdrop-blur-sm z-998 md:hidden transition-opacity duration-300 {isOpen
 		? 'opacity-100 pointer-events-auto'
 		: 'opacity-0 pointer-events-none'}"
 	aria-hidden="true"
@@ -152,7 +152,7 @@
 <div
 	bind:this={panelEl}
 	id="mobile-menu"
-	class="fixed top-0 right-0 h-full w-72 max-w-[80vw] bg-slate-950/95 backdrop-blur-lg z-[999] transform transition-transform duration-300 ease-in-out md:hidden {isOpen
+	class="fixed top-0 right-0 h-full w-72 max-w-[80vw] bg-slate-950/95 backdrop-blur-lg z-999 transform transition-transform duration-300 ease-in-out md:hidden {isOpen
 		? 'translate-x-0'
 		: 'translate-x-full'}"
 	role="dialog"
