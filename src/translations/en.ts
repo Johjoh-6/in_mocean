@@ -33,6 +33,7 @@ export const translations = {
 		title: "My Mixes",
 		subtitle: "Listen and feel the ocean vibe in every track",
 		button: "View SoundCloud Profile",
+		play: "Click to load player",
 	},
 	youtube: {
 		title: "Videos & Sets",

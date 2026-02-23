@@ -32,6 +32,7 @@ export const translations = {
 		title: "Meus Mixes",
 		subtitle: "Ouça e sinta a vibe do oceano em cada faixa",
 		button: "Ver Perfil no SoundCloud",
+		play: "Clicar para carregar o player",
 	},
 	youtube: {
 		title: "Vídeos & Sets",

@@ -33,6 +33,7 @@ export const translations = {
 		subtitle:
 			"Écoutez et ressentez les vibrations de l'océan dans chaque piste",
 		button: "Voir le Profil SoundCloud",
+		play: "Cliquer pour charger le lecteur",
 	},
 	youtube: {
 		title: "Vidéos & Sets",

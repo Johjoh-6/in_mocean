@@ -1,5 +1,9 @@
 ---
+import { SoundCloudOEmbed } from "../api/soundcloud-oembed";
+import SoundCloudFacade from "./SoundCloudFacade.svelte";
+
 interface Props {
+	textPlay: string;
 	url: string;
 	title?: string;
 	maxheight?: number;
@@ -9,6 +13,7 @@ interface Props {
 }
 
 const {
+	textPlay,
 	url,
 	title = "SoundCloud Track",
 	maxheight = 166,
@@ -17,8 +22,6 @@ const {
 	show_comments = true,
 } = Astro.props;
 
-import { SoundCloudOEmbed } from "../api/soundcloud-oembed";
-
 const oembed = new SoundCloudOEmbed();
 const embedData = await oembed.getEmbed(url, {
 	maxheight,
@@ -26,24 +29,40 @@ const embedData = await oembed.getEmbed(url, {
 	auto_play,
 	show_comments,
 });
+
+// Extract iframe src from the oEmbed HTML so we can lazy-load it on click
+let iframeSrc = "";
+if (embedData?.html) {
+	const srcMatch = embedData.html.match(/src="([^"]+)"/);
+	if (srcMatch) {
+		iframeSrc = srcMatch[1];
+	}
+}
+
+const thumbnailUrl = embedData?.thumbnail_url || "";
 ---
 
-<div class="soundcloud-embed">
-	{
-		embedData ? (
-			<div title={title} set:html={embedData.html} />
-		) : (
-			<div class="fallback bg-slate-800 rounded-lg p-6 text-center">
-				<p class="text-gray-400 mb-4">Unable to load track</p>
-				<a
-					href={url}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-orange-400 hover:text-orange-300"
-				>
-					{title}
-				</a>
-			</div>
-		)
-	}
-</div>
+{
+	iframeSrc ? (
+		<SoundCloudFacade
+			client:visible
+			textPlay={textPlay}
+			iframeSrc={iframeSrc}
+			iframeHeight={maxheight}
+			title={title}
+			thumbnailUrl={thumbnailUrl}
+		/>
+	) : (
+		<div class="fallback bg-slate-800 rounded-lg p-6 text-center">
+			<p class="text-gray-400 mb-4">Unable to load track</p>
+			<a
+				href={url}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="text-orange-400 hover:text-orange-300"
+			>
+				{title}
+			</a>
+		</div>
+	)
+}

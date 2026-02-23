@@ -4,6 +4,8 @@ import { t, type Locale } from "../translations";
 import SoundCloudPlayer from "./SoundCloudPlayer.astro";
 import { getSocialLinkByName } from "../data";
 import { getIcon } from "../utils/icons";
+import { getImage } from "astro:assets";
+import backgroundImageUrl from "../assets/background.jpeg";
 
 interface Props {
 	locale: Locale;
@@ -13,9 +15,7 @@ const { locale } = Astro.props;
 
 const musicTracks = await getCollection("tracks");
 
-const backgroundImageUrl =
-	"https://images.unsplash.com/photo-1669669149068-f5ca82f42055?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXJhZGlzZSUyMGJlYWNoJTIwZ29sZGVuJTIwc3Vuc2V0fGVufDF8fHx8MTc3MDA0MjgzOXww&ixlib=rb-4.1.0&q=80&w=1080";
-
+const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 const ScUrl = getSocialLinkByName("soundcloud")?.href || "";
 const SCIcon = getIcon("soundcloud");
 ---
@@ -25,12 +25,12 @@ const SCIcon = getIcon("soundcloud");
 	<div class="absolute inset-0 opacity-5">
 		<div
 			class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll"
-			style={`background-image: url('${backgroundImageUrl}');`}
+			style={`background-image: url('${optimizedBackgroundImage.src}');`}
 		>
 		</div>
 	</div>
 	<div
-		class="container max-w-5xl mx-auto px-4 lg:px-8 relative z-10 flex flex-col gap-8"
+		class="container mx-auto px-4 lg:px-8 relative z-10 flex flex-col gap-8"
 	>
 		<!-- Header Section -->
 		<div class="text-center">
@@ -52,20 +52,13 @@ const SCIcon = getIcon("soundcloud");
 		<div class="flex flex-col gap-8">
 			{
 				musicTracks.map((track) => (
-					<article class="bg-slate-900/50 backdrop-blur-sm rounded-xl flex flex-col gap-4 p-6 border border-slate-800 hover:border-orange-500/50 transition-all duration-300">
-						<header class="">
-							<h3 class="text-xl text-white font-semibold mb-2">
-								{track.data.title}
-							</h3>
-						</header>
-
-						<SoundCloudPlayer
-							url={track.data.url}
-							title={track.data.title}
-							color="ff5500"
-							maxheight={166}
-						/>
-					</article>
+					<SoundCloudPlayer
+						textPlay={t(locale, "soundcloud.play")}
+						url={track.data.url}
+						title={track.data.title}
+						color="ff5500"
+						maxheight={166}
+					/>
 				))
 			}
 		</div>
