@@ -1,18 +1,28 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import HeroBanner from "../../components/HeroBanner.svelte";
+import HeroBanner from "../../components/HeroBanner.astro";
 import About from "../../components/About.astro";
 import Events from "../../components/Events.astro";
 import SoundCloud from "../../components/SoundCloud.astro";
 import Youtube from "../../components/Youtube.astro";
 import Instagram from "../../components/Instagram.astro";
 import Contact from "../../components/Contact.astro";
+import type { Locale } from "../../translations";
 
-const locale = "es";
+export const getStaticPaths = () => {
+	return [
+		{ params: { locale: undefined }, props: { locale: "en" } },
+		{ params: { locale: "es" }, props: { locale: "es" } },
+		{ params: { locale: "fr" }, props: { locale: "fr" } },
+		{ params: { locale: "pt" }, props: { locale: "pt" } },
+	];
+};
+
+const { locale } = Astro.props as { locale: Locale };
 ---
 
 <Layout locale={locale}>
-	<HeroBanner client:load />
+	<HeroBanner />
 	<About locale={locale} />
 	<SoundCloud locale={locale} />
 	<Youtube locale={locale} />
