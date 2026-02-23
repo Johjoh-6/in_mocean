@@ -39,8 +39,10 @@ const Clock = getIcon("clock");
 const ArrowRight = getIcon("arrow-right");
 ---
 
-<div
-	class="group relative bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800 hover:border-pink-500/50 transition-all duration-300"
+<a
+	class="group relative bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800 hover:border-pink-500/50 transition-all duration-300 cursor-pointer"
+	href={event.url}
+	target="_blank"
 >
 	<div class="flex flex-col md:flex-row items-stretch">
 		<div
@@ -82,16 +84,14 @@ const ArrowRight = getIcon("arrow-right");
 					</div>
 				</div>
 
-				<a
+				<p
 					class="flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors group text-sm"
-					href={event.url}
-					target="_blank"
 				>
 					<span>{t(locale, "events.details")}</span>
 					<ArrowRight
 						class="w-4 h-4 group-hover:translate-x-1 transition-transform"
 					/>
-				</a>
+				</p>
 			</div>
 
 			<div class="md:w-48 h-32 md:h-auto relative overflow-hidden">
@@ -112,4 +112,4 @@ const ArrowRight = getIcon("arrow-right");
 		class="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-br from-pink-500 to-purple-600 origin-left"
 	>
 	</div>
-</div>
+</a>
