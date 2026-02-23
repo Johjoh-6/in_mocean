@@ -2,8 +2,10 @@
 import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import CardStats from "./CardStats.astro";
+import djImage from "../assets/dj_circle.png";
 
 import { getIcon } from "../utils/icons";
+import { Image } from "astro:assets";
 
 interface Props {
 	locale: Locale;
@@ -14,14 +16,6 @@ const { locale } = Astro.props;
 const allEvents = await getCollection("events");
 const uniqueCities = new Set(allEvents.map(({ data }) => data.city));
 const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
-
-// put a real image
-const djImage = {
-	src: "https://images.unsplash.com/photo-1600542552868-56ed242290e7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxESiUyMHR1cm50YWJsZXMlMjBuaWdodHxlbnwxfHx8fDE3NzAwNDA3Mzl8MA&ixlib=rb-4.0&q=80&w=1080",
-	alt: "in_m’Ocean performing with turntables at night",
-	blurDataURL:
-		"data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGBkaGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q==",
-};
 ---
 
 <section
@@ -58,13 +52,13 @@ const djImage = {
 						<div
 							class="absolute inset-12 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
 						>
-							<img
-								src={djImage.src}
-								alt={djImage.alt}
+							<Image
+								src={djImage}
+								alt="In_m'ocean picture"
 								class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
 								loading="lazy"
 								decoding="async"
-								style={`background-image: url(${djImage.blurDataURL}); background-size: cover;`}
+								fit="cover"
 							/>
 							<div
 								class="absolute inset-0 bg-linear-to-t from-orange-900/60 via-transparent to-purple-900/20"

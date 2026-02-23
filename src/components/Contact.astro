@@ -1,8 +1,9 @@
 ---
 import { t, type Locale } from "../translations";
-import HeroBannerImage from "../assets/unplash-hero.jpeg";
+import HeroBannerImage from "../assets/hero.jpeg";
 import { socialLinks } from "../data";
 import { getIcon } from "../utils/icons";
+import { getImage } from "astro:assets";
 
 interface Props {
 	locale: Locale;
@@ -11,6 +12,7 @@ interface Props {
 const { locale } = Astro.props;
 const ExternalLink = getIcon("external-link");
 
+const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 ---
 
 <section
@@ -23,7 +25,7 @@ const ExternalLink = getIcon("external-link");
 	<div class="absolute inset-0 z-0">
 		<div
 			class="w-full h-full bg-cover bg-center bg-no-repeat"
-			style={`background-image: url('${HeroBannerImage.src}')`}
+			style={`background-image: url('${optimizedBackgroundImage.src}')`}
 		>
 			<div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90 backdrop-blur-[1px]"></div>
 		</div>

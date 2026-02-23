@@ -4,6 +4,8 @@ import { t, type Locale } from "../translations";
 import EventsCard from "./EventsCard.astro";
 import { getSocialLinkByName } from "../data";
 import { getIcon } from "../utils/icons";
+import backgroundImageUrl from "../assets/background.jpeg";
+import { getImage } from "astro:assets";
 
 interface Props {
 	locale: Locale;
@@ -20,8 +22,7 @@ const events = (await getCollection("events"))
 	.filter((event) => new Date(event.data.date) > new Date())
 	.slice(0, 3);
 
-const backgroundImageUrl =
-	"https://images.unsplash.com/photo-1695289261018-74050ecf18b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5zZXQlMjBiZWFjaCUyMHBpbmslMjBza3l8ZW58MXx8fHwxNzcwMDQyODM4fDA&ixlib=rb-4.1.0&q=80&w=1080";
+const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 const IgUrl = getSocialLinkByName("instagram")?.href || "";
 const Calendar = getIcon("calendar");
 ---
@@ -33,7 +34,7 @@ const Calendar = getIcon("calendar");
 >
 	<div
 		class="absolute inset-0 bg-cover bg-center bg-no-repeat"
-		style={`background-image: url('${backgroundImageUrl}');`}
+		style={`background-image: url('${optimizedBackgroundImage.src}')`}
 		role="img"
 		aria-label="in_m’Ocean beach background"
 	>
