@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import EventsCard from "./EventsCard.astro";
-import { getSocialLinkByName } from "../data";
 import { getIcon } from "../utils/icons";
 import backgroundImageUrl from "../assets/background.jpeg";
 import { getImage } from "astro:assets";
@@ -12,6 +11,9 @@ interface Props {
 }
 
 const { locale } = Astro.props;
+
+const basePath = locale === "en" ? "" : `/${locale}`;
+const navEvents = `${basePath}/events`;
 
 // get the 3 soonest events not already past
 const events = (await getCollection("events"))
@@ -23,7 +25,6 @@ const events = (await getCollection("events"))
 	.slice(0, 3);
 
 const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
-const IgUrl = getSocialLinkByName("instagram")?.href || "";
 const Calendar = getIcon("calendar");
 ---
 
@@ -69,11 +70,9 @@ const Calendar = getIcon("calendar");
 
 		<div class="text-center">
 			<a
-				href={IgUrl}
-				target="_blank"
-				rel="noopener noreferrer"
+				href={navEvents}
 				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-full text-lg font-medium hover:from-pink-600 hover:to-purple-700 focus:from-pink-600 focus:to-purple-700 focus:outline-none focus:ring-4 focus:ring-pink-500/30 transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30 transform hover:-translate-y-1"
-				aria-label={`${t(locale, "events.button")} - Opens in new tab`}
+				aria-label={`${t(locale, "events.button")}`}
 			>
 				<Calendar class="w-5 h-5" aria-hidden="true" />
 				{t(locale, "events.button")}
