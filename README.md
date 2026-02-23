@@ -1,32 +1,49 @@
-# Astro Starter Kit: Basics
+# In_m'ocean
+Website for In_m'ocean DJ. Hosted in vercel, made with Astro and Svelte.
+The content management is Github, it's simple and easy to use. 
 
-```sh
-pnpm create astro@latest -- --template basics
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+> This should be changed in the future. Go to see [Future](##future)
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
 
-```text
+```
 /
 ├── public/
-│   └── favicon.svg
+│   └── favicon.svg // Icon for the website svg and ico 
 ├── src
 │   ├── assets
-│   │   └── astro.svg
+│   │   ├── logo.svg
+│   │   └── background.jpeg
+│   ├── content
+│   │   ├── tracks.json // Where the tracks from soudcloud are stored
+│   │   ├── events
+│   │   │   ├── images // where the images are stored for the events
+│   │   │   ├── event1.md
+│   │   │   └── event2.md
+│   │   └── instagram
+│   │       ├── images // where the images are stored for the instagram posts
+│   │       ├── ig1.md
+│   │       └── ig2.md
+│   ├── icons // Where the personal icons are stored. Without use lucide astro
+│   ├── translations // Where the translations are stored.
+│   │   ├── en.ts 
+│   │   ├── fr.ts 
+│   │   ├── es.ts 
+│   │   ├── pt.ts 
+│   │   └── index.ts // Config for translations logic
 │   ├── components
-│   │   └── Welcome.astro
+│   │   └── // Where the components are stored
 │   ├── layouts
-│   │   └── Layout.astro
+│   │   └── Layout.astro // Where the layouts are stored only one is enought for this project
 │   └── pages
-│       └── index.astro
+│       ├── 500.astro
+│       ├── 404.astro
+│       └── [...locale].astro // Handle different locales for internationalization
+│           ├── index.astro // Default page for the locale
+│       	└── events.astro // Events with the list of the futur events
 └── package.json
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
 
 ## 🧞 Commands
 
@@ -41,6 +58,20 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `pnpm astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Content
+For the content management all the documents are stored in the `content` directory. The content is written in Markdown and is organized into different sections such as `events`, `instagram`, `tracks.json`etc. Each section has its own directory and contains the corresponding Markdown files.
+Some contain a folder `images` for handling images and assets.
+Read [Content](https://github.com/max-nunes/astro-portfolio/blob/main/content/README.md)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Translations
+For translations all the documents are stored in the `translations` directory. Update he corresponding `ts` files.
+Language supported:
+- English
+- Portuguese
+- Spanish
+- French
+
+## Future
+- Add a blog section with posts and categories
+- Add an admin panel for managing content
+- Use S3 for static assets
