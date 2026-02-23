@@ -1,0 +1,9 @@
+---
+import HeroBannerInner from "./HeroBannerInner.svelte";
+import HeroBannerImage from "../assets/hero.jpeg";
+import { getImage } from "astro:assets";
+
+const optimizedHero = await getImage({ src: HeroBannerImage });
+---
+
+<HeroBannerInner client:load imageSrc={optimizedHero.src} />
