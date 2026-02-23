@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { t, type Locale } from "../translations";
 import { getIcon } from "../utils/icons";
 import type { Event } from "../content.config";
@@ -9,6 +10,8 @@ interface Props {
 }
 
 const { event, locale } = Astro.props;
+
+const isLocalImage = typeof event.image !== "string";
 
 const getMonth = (dateString: string): string => {
 	const date = new Date(dateString);
@@ -95,11 +98,27 @@ const ArrowRight = getIcon("arrow-right");
 			</div>
 
 			<div class="md:w-48 h-32 md:h-auto relative overflow-hidden">
-				<img
-					src={event.image}
-					alt={event.title}
-					class="w-full h-full object-cover"
-				/>
+				{
+					isLocalImage ? (
+						<Image
+							src={event.image}
+							alt={event.title}
+							widths={[192, 384]}
+							sizes="(min-width: 768px) 192px, 100vw"
+							class="w-full h-full object-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+					) : (
+						<img
+							src={event.image}
+							alt={event.title}
+							class="w-full h-full object-cover"
+							loading="lazy"
+							decoding="async"
+						/>
+					)
+				}
 				<div
 					class="absolute inset-0 bg-linear-to-br from-slate-900/80 to-transparent md:from-transparent md:to-slate-900/0"
 				>

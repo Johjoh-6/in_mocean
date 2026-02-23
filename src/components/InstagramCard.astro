@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { getIcon } from "../utils/icons";
 import { type PostIG } from "../content.config";
 
@@ -9,6 +10,8 @@ interface Props {
 const { post } = Astro.props;
 
 const InstagramIcon = getIcon("instagram");
+
+const isLocalImage = typeof post.image !== "string";
 ---
 
 <a
@@ -18,13 +21,27 @@ const InstagramIcon = getIcon("instagram");
 	class="group relative aspect-square overflow-hidden rounded-xl border border-slate-800 hover:border-pink-500/50 transition-all duration-300 block"
 	aria-label={`View on Instagram: ${post.alt}`}
 >
-	<img
-		src={typeof post.image === "string" ? post.image : post.image.src}
-		alt={post.alt}
-		class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-		loading="lazy"
-		decoding="async"
-	/>
+	{
+		isLocalImage ? (
+			<Image
+				src={post.image}
+				alt={post.alt}
+				widths={[300, 600]}
+				sizes="(min-width: 768px) 33vw, 50vw"
+				class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+				loading="lazy"
+				decoding="async"
+			/>
+		) : (
+			<img
+				src={post.image}
+				alt={post.alt}
+				class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+				loading="lazy"
+				decoding="async"
+			/>
+		)
+	}
 
 	<!-- Hover overlay -->
 	<div
