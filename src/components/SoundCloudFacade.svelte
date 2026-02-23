@@ -50,7 +50,7 @@
 		onkeydown={handleKeydown}
 	>
 		<div
-			class="relative flex items-center gap-4 p-4 rounded-lg border border-slate-700/50 bg-slate-800/80 hover:border-orange-500/50 transition-all duration-300"
+			class="relative flex items-center gap-4 p-6 rounded-lg border border-slate-700/50 bg-slate-800/80 hover:border-orange-500/50 transition-all duration-300"
 			style={`min-height: ${iframeHeight}px;`}
 		>
 			{#if thumbnailUrl}
