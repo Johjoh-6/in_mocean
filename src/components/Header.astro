@@ -1,5 +1,6 @@
 ---
-import Logo from "../assets/logo.svg";
+import { Image } from "astro:assets";
+import Logo from "../assets/logo.avif";
 import { t, type Locale } from "../translations";
 import MobileNav from "./MobileNav.svelte";
 
@@ -32,7 +33,7 @@ const navLinks = [
 		aria-label="Main navigation"
 	>
 		<a href={`${basePath}/`} aria-label="Home">
-			<Logo class="w-8 h-8" />
+			<Image src={Logo} alt="Logo" class="w-8 h-8" />
 		</a>
 
 		{/* Desktop nav */}
