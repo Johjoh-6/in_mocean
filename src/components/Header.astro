@@ -5,37 +5,45 @@ import { t, type Locale } from "../translations";
 
 interface Props {
 	locale: Locale;
+	headerVisible?: boolean;
 }
 
-const { locale } = Astro.props;
+const { locale, headerVisible = false } = Astro.props;
+
+const basePath = locale === "en" ? "" : `/${locale}`;
 ---
 
 <header
 	id="header"
-	class="fixed top-0 left-0 right-0 z-50 opacity-0 bg-black/90 backdrop-blur-md transition-all duration-300"
+	class:list={[
+		"fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md transition-all duration-300",
+		{ "opacity-0": !headerVisible },
+	]}
 >
 	<nav class="container mx-auto flex justify-between items-center px-6 py-4">
 		<div class="flex items-center gap-3">
-			<Image src={imgReference} alt="Logo In_m'ocean" height={32} />
+			<a href={`${basePath}/`} aria-label="Home">
+				<Image src={imgReference} alt="Logo In_m'ocean" height={32} />
+			</a>
 
 			<nav class="hidden md:flex items-center gap-8">
 				<a
-					href="#about"
+					href={`${basePath}/#about`}
 					class="text-gray-300 hover:text-orange-400 transition-colors"
 					>{t(locale, "header.about")}</a
 				>
 				<a
-					href="#music"
+					href={`${basePath}/#music`}
 					class="text-gray-300 hover:text-orange-400 transition-colors"
 					>{t(locale, "header.music")}</a
 				>
 				<a
-					href="#events"
+					href={`${basePath}/events`}
 					class="text-gray-300 hover:text-orange-400 transition-colors"
 					>{t(locale, "header.events")}</a
 				>
 				<a
-					href="#contact"
+					href={`${basePath}/#contact`}
 					class="text-gray-300 hover:text-orange-400 transition-colors"
 					>{t(locale, "header.contact")}</a
 				>

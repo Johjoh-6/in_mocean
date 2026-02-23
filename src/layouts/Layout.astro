@@ -8,9 +8,14 @@ import Analytics from "@vercel/analytics/astro";
 interface Props {
 	locale?: Locale;
 	title?: string;
+	headerVisible?: boolean;
 }
 
-const { locale = "en", title = "in_m’Ocean" } = Astro.props;
+const {
+	locale = "en",
+	title = "in_m'Ocean",
+	headerVisible = false,
+} = Astro.props;
 const currentLocale = (Astro.currentLocale as Locale) || locale;
 ---
 
@@ -38,7 +43,7 @@ const currentLocale = (Astro.currentLocale as Locale) || locale;
 		<title>{title}</title>
 	</head>
 	<body class="relative bg-slate-950">
-		<Header locale={currentLocale} />
+		<Header locale={currentLocale} headerVisible={headerVisible} />
 		<main>
 			<slot />
 		</main>
