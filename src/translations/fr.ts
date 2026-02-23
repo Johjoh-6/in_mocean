@@ -27,6 +27,7 @@ export const translations = {
 		description: "Venez sentir la magie du coucher du soleil",
 		button: "Voir l'Agenda Complet",
 		details: "Voir détail",
+		noevent: "Pas de prochains événements prévu",
 	},
 	soundcloud: {
 		title: "Mes Mixes",

@@ -28,6 +28,7 @@ export const translations = {
 		description: "Come feel the energy of the in_m’Ocean",
 		button: "View Full Agenda",
 		details: "View Details",
+		noevent: "No upcoming events at the moment.",
 	},
 	soundcloud: {
 		title: "My Mixes",

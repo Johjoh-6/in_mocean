@@ -27,6 +27,7 @@ export const translations = {
 		description: "Venha sentir a energia do pôr do sol",
 		button: "Ver Agenda Completa",
 		details: "Ver Detalhes",
+		noevent: "Não há eventos futuros.",
 	},
 	soundcloud: {
 		title: "Meus Mixes",
