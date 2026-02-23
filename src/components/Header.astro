@@ -1,5 +1,6 @@
 ---
-import { getIcon } from "../utils/icons";
+import { Image } from "astro:assets";
+import imgReference from "../assets/logo.svg";
 import { t, type Locale } from "../translations";
 
 interface Props {
@@ -7,9 +8,6 @@ interface Props {
 }
 
 const { locale } = Astro.props;
-
-const Waves = getIcon("waves");
-const Music = getIcon("music-2");
 ---
 
 <header
@@ -18,34 +16,30 @@ const Music = getIcon("music-2");
 >
 	<nav class="container mx-auto flex justify-between items-center px-6 py-4">
 		<div class="flex items-center gap-3">
-			<div class="flex items-center gap-2">
-				<Waves class="w-5 h-5 text-orange-400" />
-				<Music class="w-5 h-5 text-orange-400" />
-			</div>
-			<p class="text-xl text-white">in_m’Ocean</p>
-		</div>
+			<Image src={imgReference} alt="Logo In_m'ocean" height={32} />
 
-		<nav class="hidden md:flex items-center gap-8">
-			<a
-				href="#about"
-				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>{t(locale, "header.about")}</a
-			>
-			<a
-				href="#music"
-				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>{t(locale, "header.music")}</a
-			>
-			<a
-				href="#events"
-				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>{t(locale, "header.events")}</a
-			>
-			<a
-				href="#contact"
-				class="text-gray-300 hover:text-orange-400 transition-colors"
-				>{t(locale, "header.contact")}</a
-			>
-		</nav>
+			<nav class="hidden md:flex items-center gap-8">
+				<a
+					href="#about"
+					class="text-gray-300 hover:text-orange-400 transition-colors"
+					>{t(locale, "header.about")}</a
+				>
+				<a
+					href="#music"
+					class="text-gray-300 hover:text-orange-400 transition-colors"
+					>{t(locale, "header.music")}</a
+				>
+				<a
+					href="#events"
+					class="text-gray-300 hover:text-orange-400 transition-colors"
+					>{t(locale, "header.events")}</a
+				>
+				<a
+					href="#contact"
+					class="text-gray-300 hover:text-orange-400 transition-colors"
+					>{t(locale, "header.contact")}</a
+				>
+			</nav>
+		</div>
 	</nav>
 </header>
