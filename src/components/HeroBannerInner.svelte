@@ -136,7 +136,7 @@
 		>
 			<h1
 				bind:this={heroTitle}
-				class="text-7xl md:text-9xl font-black mb-6 text-center"
+				class="text-5xl md:text-8xl font-black mb-6 text-center"
 			>
 				in_m'Ocean
 			</h1>
