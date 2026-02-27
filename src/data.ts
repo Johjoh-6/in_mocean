@@ -34,8 +34,8 @@ export const socialLinks = [
 	{
 		iconName: "mail",
 		label: "Email",
-		handle: "contact@musicinmocean.com",
-		href: "mailto:contact@musicinmocean.com",
+		handle: "contacto@musicinmocean.com",
+		href: "mailto:contacto@musicinmocean.com",
 		color: "from-blue-500 to-blue-600",
 	},
 ];
