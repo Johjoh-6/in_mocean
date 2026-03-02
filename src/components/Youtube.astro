@@ -1,36 +1,22 @@
 ---
+import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
-import YouTubeAPI, { type YouTubeVideo } from "../api/youtube-api";
 import { getIcon } from "../utils/icons";
 import { getSocialLinkByName } from "../data";
 
-
 interface Props {
   locale: Locale;
-  channelId?: string;
-  maxVideos?: number;
 }
 
-const { locale, channelId, maxVideos = 4 } = Astro.props;
+const { locale } = Astro.props;
 
-let videos: YouTubeVideo[] = [];
-let error: string | null = null;
+const videoEntries = await getCollection("youtube");
+const videos = videoEntries.map((entry) => ({
+  id: entry.id,
+  ...entry.data,
+}));
 
-// Fetch videos from YouTube API only
-if (import.meta.env.YOUTUBE_API_KEY && (channelId || import.meta.env.YOUTUBE_CHANNEL_ID)) {
-  try {
-    const youtubeAPI = new YouTubeAPI(import.meta.env.YOUTUBE_API_KEY);
-    videos = await youtubeAPI.getChannelVideos(
-      channelId || import.meta.env.YOUTUBE_CHANNEL_ID,
-      maxVideos
-    );
-  } catch (e) {
-    error = "Unable to load videos. Please check your YouTube API configuration.";
-    console.error('YouTube API error:', e);
-  }
-} else {
-  error = "YouTube API not configured.";
-}
+const hasVideos = videos.length > 0;
 
 function formatDate(dateString: string): string {
   const date = new Date(dateString);
@@ -46,7 +32,6 @@ const EyeIcon = getIcon('eye');
 const YoutubeIcon = getIcon('youtube');
 
 const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
-
 ---
 
 <section
@@ -77,15 +62,14 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
         </p>
       </header>
 
-      {error ? (
-        <!-- Error State -->
+      {!hasVideos ? (
+        <!-- Empty State -->
         <div class="text-center py-12">
-          <div class="bg-red-900/20 border border-red-500/50 rounded-lg p-6 max-w-md mx-auto mb-8">
-            <p class="text-red-400 mb-4">{error}</p>
-            <p class="text-gray-400 text-sm">Configure your YouTube API key in environment variables to show videos.</p>
+          <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 max-w-md mx-auto mb-8">
+            <p class="text-gray-300 mb-2">No videos found.</p>
+            <p class="text-gray-400 text-sm">Check that YOUTUBE_API_KEY and YOUTUBE_CHANNEL_ID are configured.</p>
           </div>
 
-          <!-- Channel Link Only -->
           <a
             href={YoutubeUrl}
             target="_blank"
@@ -97,26 +81,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
             <span>{t(locale, "youtube.button")}</span>
           </a>
         </div>
-      )  : videos.length === 0 ? (
-       <!-- Empty State -->
-       <div class="text-center py-12">
-         <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 max-w-md mx-auto mb-8">
-           <p class="text-gray-300 mb-2">No videos found.</p>
-           <p class="text-gray-400 text-sm">This channel has no recent public videos to display.</p>
-         </div>
-
-         <a
-           href={YoutubeUrl}
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-red-500/25"
-           aria-label="Visit YouTube channel"
-         >
-           <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
-           <span>{t(locale, "youtube.button")}</span>
-         </a>
-       </div>
-     ) : (
+      ) : (
         <!-- Videos Grid -->
         <>
           <div class="grid md:grid-cols-2 gap-8 mb-16">

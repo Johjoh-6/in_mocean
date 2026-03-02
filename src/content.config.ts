@@ -1,5 +1,6 @@
 import { file, glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
+import YouTubeAPI from "./api/youtube-api";
 
 //
 // SCHEMAS
@@ -19,9 +20,20 @@ const eventsSchema = (image: Function) =>
 		city: z.string().min(1, "city is required"),
 		country: z.string().min(1, "country is required"),
 		location: z.string().min(1, "location is required"),
-		url: z.string().url("url must be a valid URL").optional(),
+		url: z.string().url("url must be a valid URL").nullable().optional(),
 		image: z.union([image(), z.string().url("image must be a valid URL")]),
 	});
+
+const youtubeVideoSchema = z.object({
+	title: z.string(),
+	description: z.string(),
+	thumbnail: z.string().url(),
+	publishedAt: z.string(),
+	duration: z.string(),
+	views: z.string(),
+	likes: z.string().optional(),
+	channelTitle: z.string(),
+});
 
 const instagramSchema = (image: Function) =>
 	z.object({
@@ -36,6 +48,7 @@ const instagramSchema = (image: Function) =>
 
 export type Track = z.infer<typeof tracksSchema>;
 export type Event = z.infer<ReturnType<typeof eventsSchema>>;
+export type YouTubeVideo = z.infer<typeof youtubeVideoSchema>;
 export type PostIG = z.infer<ReturnType<typeof instagramSchema>>;
 
 //
@@ -57,8 +70,54 @@ const instagram = defineCollection({
 	schema: ({ image }) => instagramSchema(image),
 });
 
+const youtube = defineCollection({
+	loader: {
+		name: "youtube-loader",
+		load: async ({ store, logger }) => {
+			const apiKey = import.meta.env.YOUTUBE_API_KEY;
+			const channelId = import.meta.env.YOUTUBE_CHANNEL_ID;
+
+			if (!apiKey || !channelId) {
+				logger.warn(
+					"YouTube API not configured. Set YOUTUBE_API_KEY and YOUTUBE_CHANNEL_ID env vars.",
+				);
+				return;
+			}
+
+			try {
+				const youtubeAPI = new YouTubeAPI(apiKey);
+				const videos = await youtubeAPI.getChannelVideos(channelId, 4);
+
+				store.clear();
+
+				for (const video of videos) {
+					store.set({
+						id: video.id,
+						data: {
+							title: video.title,
+							description: video.description,
+							thumbnail: video.thumbnail,
+							publishedAt: video.publishedAt,
+							duration: video.duration,
+							views: video.views,
+							likes: video.likes,
+							channelTitle: video.channelTitle,
+						},
+					});
+				}
+
+				logger.info(`Loaded ${videos.length} YouTube videos.`);
+			} catch (e) {
+				logger.error(`Failed to fetch YouTube videos: ${e}`);
+			}
+		},
+	},
+	schema: youtubeVideoSchema,
+});
+
 export const collections = {
 	tracks,
 	events,
 	instagram,
+	youtube,
 };
