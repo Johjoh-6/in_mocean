@@ -83,10 +83,13 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
         </div>
       ) : (
         <!-- Videos Grid -->
-        <>
           <div class="grid md:grid-cols-2 gap-8 mb-16">
             {videos.map((video) => (
-              <article class="group bg-surface-card backdrop-blur-sm rounded-xl overflow-hidden border border-border-default hover:border-brand-red-500/50 transition-all duration-300 transform hover:-translate-y-1">
+              <a href={`https://www.youtube.com/watch?v=${video.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Play ${video.title}`}
+              class="group bg-surface-card backdrop-blur-sm rounded-xl overflow-hidden border border-border-default hover:border-brand-red-500/50 transition-all duration-300 transform hover:-translate-y-1">
                 <!-- Thumbnail -->
                 <div class="relative aspect-video overflow-hidden">
                   <img
@@ -101,15 +104,11 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
 
                   <!-- Play Button -->
                   <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <a
-                      href={`https://www.youtube.com/watch?v=${video.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <div
                       class="w-16 h-16 bg-brand-red-600 hover:bg-brand-red-500 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300 shadow-2xl"
-                      aria-label={`Play ${video.title}`}
                     >
                       <PlayIcon class="w-8 h-8 text-text-primary ml-1" fill="currentColor" />
-                    </a>
+                    </div>
                   </div>
 
                   <!-- Duration Badge -->
@@ -147,7 +146,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
                     )}
                   </div>
                 </div>
-              </article>
+              </a>
             ))}
           </div>
 
@@ -164,7 +163,6 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
               <span>{t(locale, "youtube.button")}</span>
             </a>
           </div>
-        </>
       )}
     </div>
   </div>
