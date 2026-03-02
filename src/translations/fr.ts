@@ -24,10 +24,13 @@ export const translations = {
 	},
 	events: {
 		title: "Prochains Événements",
+		titlepassed: "Événements Passés",
 		description: "Venez sentir la magie du coucher du soleil",
 		button: "Voir l'Agenda Complet",
+		buttonpassed: "Voir l'Agenda Passé",
 		details: "Voir détail",
 		noevent: "Pas de prochains événements prévu",
+		noeventpassed: "Pas d'événements passés à afficher",
 		futur: "Événements futurs encore non confirmés",
 	},
 	soundcloud: {

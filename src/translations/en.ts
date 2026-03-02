@@ -25,10 +25,13 @@ export const translations = {
 	},
 	events: {
 		title: "Next Shows",
+		titlepassed: "Past Shows",
 		description: "Come feel the energy of the in_m’Ocean",
 		button: "View Full Agenda",
+		buttonpassed: "View Past Agenda",
 		details: "View Details",
 		noevent: "No upcoming events at the moment.",
+		noeventpassed: "No past events to display.",
 		futur: "Upcoming events still not confirmed",
 	},
 	soundcloud: {
