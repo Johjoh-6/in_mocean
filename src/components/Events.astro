@@ -66,6 +66,15 @@ const Calendar = getIcon("calendar");
 		<div class="max-w-6xl mx-auto mb-16">
 			<div class="grid gap-8 md:gap-12">
 				{
+					events.length === 0 && (
+						<div class="text-center py-16">
+							<p class="text-gray-400 text-2xl md:text-3xl lg:text-4xl">
+								{t(locale, "events.futur")}
+							</p>
+						</div>
+					)
+				}
+				{
 					events.map((event, index) => (
 						<EventsCard
 							event={event.data}

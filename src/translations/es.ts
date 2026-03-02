@@ -28,6 +28,7 @@ export const translations = {
 		button: "Ver Agenda Completa",
 		details: "Ver Detalles",
 		noevent: "No hay eventos futuros.",
+		futur: "Eventos futuros aún no confirmados",
 	},
 	soundcloud: {
 		title: "Mis Mixes",
