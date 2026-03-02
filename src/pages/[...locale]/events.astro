@@ -66,10 +66,11 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 				{
 					events.length > 0 ? (
 						<div class="grid gap-8 md:gap-12">
-							{events.map((event) => (
+							{events.map((event, index) => (
 								<EventsCard
 									event={event.data}
 									locale={locale}
+									index={index}
 								/>
 							))}
 						</div>
