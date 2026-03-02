@@ -1,7 +1,7 @@
 ---
-dateStart: "09/09/2024 19:00:00"
-dateEnd: "09/09/2024 23:00:00"
-title: "Chill Session"
+dateStart: "31/10/2024 22:00:00"
+dateEnd: "31/10/2024 03:00:00"
+title: "Halloween Party"
 city: "Santiago"
 country: "Chile"
 location: "La Chimba Hostal"

@@ -1,7 +1,7 @@
 ---
-dateStart: "09/09/2024 19:00:00"
-dateEnd: "09/09/2024 23:00:00"
-title: "Chill Session"
+dateStart: "19/10/2025 21:00:00"
+dateEnd: "19/10/2025 22:30:00"
+title: "Sunday BBQ"
 city: "Santiago"
 country: "Chile"
 location: "La Chimba Hostal"

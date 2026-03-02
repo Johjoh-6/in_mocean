@@ -1,7 +1,7 @@
 ---
-dateStart: "09/09/2024 19:00:00"
-dateEnd: "09/09/2024 23:00:00"
-title: "Chill Session"
+dateStart: "20/06/2025 19:00:00"
+dateEnd: "20/06/2025 0:00:00"
+title: "After Office"
 city: "Santiago"
 country: "Chile"
 location: "La Chimba Hostal"
