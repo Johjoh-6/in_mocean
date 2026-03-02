@@ -30,12 +30,13 @@ Each event is a `.md` file in `src/content/events/`.
 
 | Field      | Type     | Required | Description                          |
 | ---------- | -------- | -------- | ------------------------------------ |
-| `date`     | `string` | ✅       | Date and time (format: `MM/DD/YYYY HH:mm:ss`) |
+| `dateStart`     | `string` | ✅       | Date and time (format: `MM/DD/YYYY HH:mm:ss`) |
+| `dateEnd`     | `string` | ✅       | Date and time (format: `MM/DD/YYYY HH:mm:ss`) |
 | `title`    | `string` | ✅       | Event name                           |
 | `city`     | `string` | ✅       | City where the event takes place     |
 | `country`  | `string` | ✅       | Country                              |
 | `location` | `string` | ✅       | Venue or specific location name      |
-| `url`      | `string` | ✅       | Link to the event page (must be a valid URL) |
+| `url`      | `string` | Optional | Link to the event page (must be a valid URL) |
 | `image`    | `string` or local path | ✅ | Event image (see [Images](#images) below) |
 
 ### Example with a remote image
@@ -43,7 +44,8 @@ Each event is a `.md` file in `src/content/events/`.
 ```md
 <!-- src/content/events/event-001.md -->
 ---
-date: "03/15/2026 17:00:00"
+dateStart: "03/15/2026 17:00:00"
+dateEnd: "03/15/2026 21:00:00"
 title: "in_m'Ocean Beach Festival"
 city: "Florianópolis"
 country: "Brazil"
@@ -58,7 +60,8 @@ image: "https://images.unsplash.com/photo-1610816931633-564daed99c91?w=1080"
 ```md
 <!-- src/content/events/event-002.md -->
 ---
-date: "03/22/2026 20:00:00"
+dateStart: "03/22/2026 20:00:00"
+dateEnd: "03/22/2026 23:00:00"
 title: "Ocean Vibes Night"
 city: "São Paulo"
 country: "Brazil"
@@ -81,8 +84,10 @@ Each post is a `.md` file in `src/content/instagram/`.
 | Field   | Type     | Required | Description                          |
 | ------- | -------- | -------- | ------------------------------------ |
 | `alt`   | `string` | ✅       | Accessible description of the image  |
-| `href`  | `string` | ✅       | Link to the Instagram post (must be a valid URL) |
+| `href`  | `string` | Optional | Link to the Instagram post (must be a valid URL) |
 | `image` | `string` or local path | ✅ | Post image (see [Images](#images) below) |
+
+> **Note:** If `href` is not provided, the post will link to the Instagram account.
 
 ### Example with a remote image
 
