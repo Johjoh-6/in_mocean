@@ -91,18 +91,16 @@ const accent = accentColors[index % accentColors.length];
 >
 	<div class="flex flex-col md:flex-row items-stretch">
 		<div
-			class="md:w-24 flex md:flex-col items-center justify-center p-4 bg-linear-to-br from-brand-pink-500 to-brand-purple-600 text-text-primary"
+			class="text-center gap-2 md:gap-1 md:w-24 flex md:flex-col items-center justify-center p-4 bg-linear-to-br from-brand-pink-500 to-brand-purple-600 text-text-primary"
 		>
-			<div class="text-center">
-				<div class="text-3xl md:text-4xl font-bold mb-1">
-					{getDateNumber(event.dateStart)}
-				</div>
-				<div class="text-xs md:text-sm uppercase tracking-wider mb-1">
-					{getMonth(event.dateStart)}
-				</div>
-				<div class="text-3xl md:text-4xl font-black">
-					{getTwoLastNumberOfYear(event.dateStart)}
-				</div>
+			<div class="text-3xl md:text-4xl font-bold">
+				{getDateNumber(event.dateStart)}
+			</div>
+			<div class="text-1xl md:text-base uppercase tracking-wider">
+				{getMonth(event.dateStart)}
+			</div>
+			<div class="text-3xl md:text-4xl font-black">
+				{getTwoLastNumberOfYear(event.dateStart)}
 			</div>
 		</div>
 
