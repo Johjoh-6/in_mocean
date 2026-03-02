@@ -3,6 +3,7 @@ export const translations = {
 		about: "À propos",
 		music: "Musique",
 		events: "Événements",
+		eventsPassed: "Passés",
 		contact: "Contact",
 	},
 	hero: {
