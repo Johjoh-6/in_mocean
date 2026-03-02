@@ -26,15 +26,6 @@ const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 	class="relative py-20 bg-surface-section"
 	aria-labelledby="about-title"
 >
-	<!-- Background Pattern -->
-	<div class="absolute inset-0 opacity-5">
-		<div
-			class="absolute inset-0"
-			style={`background-image: radial-gradient(circle at 25% 25%, var(--brand-orange-500) 1px, transparent 1px), radial-gradient(circle at 75% 75%, var(--brand-pink-500) 1px, transparent 1px); background-size: 50px 50px;`}
-		>
-		</div>
-	</div>
-
 	<div class="container mx-auto px-4 lg:px-8 relative z-10">
 		<div class="max-w-7xl mx-auto">
 			<div class="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
@@ -43,17 +34,17 @@ const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 					<div class="relative w-full aspect-square max-w-lg mx-auto">
 						<!-- Animated Rings -->
 						<div
-							class="absolute inset-0 border-4 border-brand-orange-500/30 rounded-full ring-pulse ring-1"
+							class="absolute inset-0 border-4 border-brand-orange-500 rounded-full ring-pulse ring-delay-1"
 						>
 						</div>
 						<div
-							class="absolute inset-4 border-4 border-brand-pink-500/30 rounded-full ring-pulse ring-2"
+							class="absolute inset-4 border-4 border-brand-pink-500 rounded-full ring-pulse ring-delay-2"
 						>
 						</div>
 
 						<!-- Main Image Container -->
 						<div
-							class="absolute inset-12 rounded-full overflow-hidden border-4 border-white/10 shadow-2xl"
+							class="absolute inset-12 rounded-full overflow-hidden border-4 border-white/50 shadow-2xl"
 						>
 							<Image
 								src={djImage}
@@ -165,15 +156,15 @@ const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 			animation: ringPulse 3s ease-in-out infinite;
 		}
 
-		.ring-1 {
+		.ring-delay-1 {
 			animation-delay: 0s;
 		}
 
-		.ring-2 {
+		.ring-delay-2 {
 			animation-delay: 1s;
 		}
 
-		.ring-3 {
+		.ring-delay-3 {
 			animation-delay: 2s;
 		}
 
