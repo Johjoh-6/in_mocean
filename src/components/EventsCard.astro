@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import { t, type Locale } from "../translations";
 import { getIcon } from "../utils/icons";
+import { parseDate } from "../utils/date";
 import type { Event } from "../content.config";
 
 interface Props {
@@ -15,31 +16,31 @@ const { event, locale, index } = Astro.props;
 const isLocalImage = typeof event.image !== "string";
 
 const getMonth = (dateString: string): string => {
-	const date = new Date(dateString);
+	const date = parseDate(dateString);
 	const month = date.getMonth();
 	return t(locale, "date.months." + month);
 };
 
 const getDateNumber = (dateString: string): number => {
-	const date = new Date(dateString);
+	const date = parseDate(dateString);
 	return date.getDate();
 };
 
 const getTime = (dateString: string): string => {
-	const date = new Date(dateString);
+	const date = parseDate(dateString);
 	const hours = date.getHours();
 	const minutes = date.getMinutes();
 	return `${hours}:${minutes.toString().padStart(2, "0")}`;
 };
 
 const getTwoLastNumberOfYear = (dateString: string): number => {
-	const date = new Date(dateString);
+	const date = parseDate(dateString);
 	return date.getFullYear() % 100;
 };
 
 const isSameDay = (dateStringA: string, dateStringB: string): boolean => {
-	const a = new Date(dateStringA);
-	const b = new Date(dateStringB);
+	const a = parseDate(dateStringA);
+	const b = parseDate(dateStringB);
 	return (
 		a.getFullYear() === b.getFullYear() &&
 		a.getMonth() === b.getMonth() &&

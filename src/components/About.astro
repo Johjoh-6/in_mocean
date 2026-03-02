@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
+import { parseDate } from "../utils/date";
 import CardStats from "./CardStats.astro";
 import djImage from "../assets/dj_circle.png";
 
@@ -13,7 +14,9 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const allEvents = await getCollection("events");
+const allEvents = await getCollection("events", ({ data }) => {
+	return parseDate(data.dateStart) < new Date();
+});
 const uniqueCities = new Set(allEvents.map(({ data }) => data.city));
 const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 ---

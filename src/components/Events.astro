@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { t, type Locale } from "../translations";
 import EventsCard from "./EventsCard.astro";
 import { getIcon } from "../utils/icons";
+import { parseDate } from "../utils/date";
 import backgroundImageUrl from "../assets/background.jpeg";
 import { getImage } from "astro:assets";
 
@@ -18,12 +19,13 @@ const navEvents = `${basePath}/events`;
 // get the 3 soonest events not already past
 const events = (
 	await getCollection("events", ({ data }) => {
-		return new Date(data.date) > new Date();
+		return parseDate(data.dateStart) > new Date();
 	})
 )
 	.sort(
 		(a, b) =>
-			new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
+			parseDate(a.data.dateStart).getTime() -
+			parseDate(b.data.dateStart).getTime(),
 	)
 	.slice(0, 3);
 
