@@ -50,7 +50,11 @@ const IgUrl = getSocialLinkByName("instagram")?.href || "";
 
 			<!-- Gallery Grid -->
 			<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-16">
-				{posts.map((post) => <InstagramCard post={post.data} />)}
+				{
+					posts.map((post) => (
+						<InstagramCard post={post.data} igUrl={IgUrl} />
+					))
+				}
 			</div>
 
 			<!-- Instagram Profile Link -->

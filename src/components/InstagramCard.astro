@@ -5,17 +5,19 @@ import { type PostIG } from "../content.config";
 
 interface Props {
 	post: PostIG;
+	igUrl: string;
 }
 
-const { post } = Astro.props;
+const { post, igUrl } = Astro.props;
 
 const InstagramIcon = getIcon("instagram");
 
 const isLocalImage = typeof post.image !== "string";
+const href = post.href ?? igUrl;
 ---
 
 <a
-	href={post.href}
+	href={href}
 	target="_blank"
 	rel="noopener noreferrer"
 	class="group relative aspect-square overflow-hidden rounded-xl border border-slate-800 hover:border-pink-500/50 transition-all duration-300 block"
