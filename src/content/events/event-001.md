@@ -6,5 +6,5 @@ city: "Santiago"
 country: "Chile"
 location: "La Chimba Hostal [Resident DJ]"
 url: null
-image: ./image/la-chimba-hostal.jpg
+image: ./images/la-chimba-hostal.jpg
 ---
