@@ -12,6 +12,14 @@ interface Props {
 const { locale, headerVisible = false } = Astro.props;
 
 const basePath = locale === "en" ? "" : `/${locale}`;
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const isActive = (href: string): boolean => {
+	const cleanHref = href.replace(/\/$/, "") || "/";
+	// Hash links (e.g. /#about) — not matchable server-side
+	if (cleanHref.includes("#")) return false;
+	return currentPath === cleanHref;
+};
 
 const navLinks = [
 	{ href: `${basePath}/#about`, label: t(locale, "header.about") },
@@ -22,7 +30,7 @@ const navLinks = [
 		label: t(locale, "header.eventsPassed"),
 	},
 	{ href: `${basePath}/#contact`, label: t(locale, "header.contact") },
-];
+].map((link) => ({ ...link, active: isActive(link.href) }));
 ---
 
 <header
@@ -46,7 +54,13 @@ const navLinks = [
 				navLinks.map((link) => (
 					<a
 						href={link.href}
-						class="text-gray-300 hover:text-orange-400 focus:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/50 rounded-sm px-1 py-0.5 transition-colors"
+						class:list={[
+							"rounded-sm px-1 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400/50",
+							link.active
+								? "text-orange-400 border-b-2 border-orange-400"
+								: "text-gray-300 hover:text-orange-400 focus:text-orange-400",
+						]}
+						aria-current={link.active ? "page" : undefined}
 					>
 						{link.label}
 					</a>

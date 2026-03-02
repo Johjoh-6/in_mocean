@@ -4,6 +4,7 @@
 	interface NavLink {
 		href: string;
 		label: string;
+		active: boolean;
 	}
 
 	interface Props {
@@ -192,7 +193,10 @@
 			{#each links as link (link.href)}
 				<a
 					href={link.href}
-					class="text-lg text-gray-300 hover:text-orange-400 focus:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/50 rounded-lg px-4 py-3 transition-colors hover:bg-white/5"
+					class="text-lg rounded-lg px-4 py-3 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400/50 {link.active
+						? 'text-orange-400 bg-white/5 border-l-2 border-orange-400'
+						: 'text-gray-300 hover:text-orange-400 focus:text-orange-400 hover:bg-white/5'}"
+					aria-current={link.active ? "page" : undefined}
 					onclick={close}
 				>
 					{link.label}
