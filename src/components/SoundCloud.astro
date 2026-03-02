@@ -26,11 +26,15 @@ const SCIcon = getIcon("soundcloud");
 	aria-labelledby="mixes-title"
 >
 	<!-- Background -->
-	<div class="absolute inset-0 opacity-5">
+	<div class="absolute inset-0">
 		<div
 			class="absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll"
 			style={`background-image: url('${optimizedBackgroundImage.src}');`}
 		>
+			<div
+				class="absolute inset-0 bg-surface-body/75 backdrop-blur-[1px]"
+			>
+			</div>
 		</div>
 	</div>
 	<div
