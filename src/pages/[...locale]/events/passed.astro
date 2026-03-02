@@ -18,14 +18,15 @@ export const getStaticPaths = () => {
 
 const { locale } = Astro.props as { locale: Locale };
 
+// Last to first sorting
 const events = (
 	await getCollection("events", ({ data }) => {
 		return parseDate(data.dateStart) <= new Date();
 	})
 ).sort(
 	(a, b) =>
-		parseDate(a.data.dateStart).getTime() -
-		parseDate(b.data.dateStart).getTime(),
+		parseDate(b.data.dateStart).getTime() -
+		parseDate(a.data.dateStart).getTime(),
 );
 
 const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
