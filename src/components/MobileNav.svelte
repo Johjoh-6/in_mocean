@@ -193,9 +193,9 @@
 			{#each links as link (link.href)}
 				<a
 					href={link.href}
-					class="text-lg rounded-lg px-4 py-3 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50 {link.active
-						? 'text-brand-orange-400 bg-white/5 border-l-2 border-brand-orange-400'
-						: 'text-text-secondary hover:text-brand-orange-400 focus:text-brand-orange-400 hover:bg-white/5'}"
+					class="text-lg rounded-lg px-4 py-3 border-l-2 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50 {link.active
+						? 'text-brand-orange-400 bg-white/5 border-brand-orange-400'
+						: 'text-text-secondary border-transparent hover:text-brand-orange-400 focus:text-brand-orange-400 hover:bg-white/5'}"
 					aria-current={link.active ? "page" : undefined}
 					onclick={close}
 				>
