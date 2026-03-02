@@ -20,7 +20,7 @@ const href = post.href ?? igUrl;
 	href={href}
 	target="_blank"
 	rel="noopener noreferrer"
-	class="group relative aspect-square overflow-hidden rounded-xl border border-slate-800 hover:border-pink-500/50 transition-all duration-300 block"
+	class="group relative aspect-square overflow-hidden rounded-xl border border-border-default hover:border-brand-pink-500/50 transition-all duration-300 block"
 	aria-label={`View on Instagram: ${post.alt}`}
 >
 	{
@@ -47,12 +47,15 @@ const href = post.href ?? igUrl;
 
 	<!-- Hover overlay -->
 	<div
-		class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+		class="absolute inset-0 bg-surface-body/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
 	>
 		<div
-			class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-2xl"
+			class="w-12 h-12 bg-brand-pink-600 rounded-full flex items-center justify-center transform scale-75 group-hover:scale-100 transition-transform duration-300 shadow-2xl"
 		>
-			<InstagramIcon class="w-6 h-6 text-white" aria-hidden="true" />
+			<InstagramIcon
+				class="w-6 h-6 text-text-primary"
+				aria-hidden="true"
+			/>
 		</div>
 	</div>
 </a>

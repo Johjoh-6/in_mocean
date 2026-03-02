@@ -19,14 +19,14 @@ const IgUrl = getSocialLinkByName("instagram")?.href || "";
 
 <section
 	id="instagram"
-	class="relative py-20 bg-slate-950"
+	class="relative py-20 bg-surface-section"
 	aria-labelledby="instagram-title"
 >
 	<!-- Background -->
 	<div class="absolute inset-0 opacity-5">
 		<div
 			class="absolute inset-0"
-			style="background-image: radial-gradient(circle at 25% 25%, #ec4899 1px, transparent 1px), radial-gradient(circle at 75% 75%, #8b5cf6 1px, transparent 1px); background-size: 50px 50px;"
+			style={`background-image: radial-gradient(circle at 25% 25%, var(--brand-pink-500) 1px, transparent 1px), radial-gradient(circle at 75% 75%, var(--brand-purple-500) 1px, transparent 1px); background-size: 50px 50px;`}
 		>
 		</div>
 	</div>
@@ -37,12 +37,12 @@ const IgUrl = getSocialLinkByName("instagram")?.href || "";
 			<header class="text-center mb-16">
 				<h2
 					id="instagram-title"
-					class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-br from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-bold leading-tight"
+					class="text-4xl md:text-5xl lg:text-6xl mb-6 gradient-events-heading font-bold leading-tight"
 				>
 					{t(locale, "instagram.title")}
 				</h2>
 				<p
-					class="text-gray-400 text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
+					class="text-text-muted text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed"
 				>
 					{t(locale, "instagram.subtitle")}
 				</p>
@@ -63,7 +63,7 @@ const IgUrl = getSocialLinkByName("instagram")?.href || "";
 					href={IgUrl}
 					target="_blank"
 					rel="noopener noreferrer"
-					class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-pink-500/25"
+					class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-brand-pink-500 to-brand-purple-600 hover:from-brand-pink-600 hover:to-brand-purple-700 text-text-primary rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-brand-pink-500/25"
 					aria-label="Visit Instagram profile"
 				>
 					<IgIcon class="w-6 h-6" aria-hidden="true" />

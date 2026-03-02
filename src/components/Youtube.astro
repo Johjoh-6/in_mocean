@@ -36,14 +36,14 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
 
 <section
   id="videos"
-  class="relative py-20 bg-slate-950"
+  class="relative py-20 bg-surface-section"
   aria-labelledby="videos-title"
 >
   <!-- Simple Background Pattern -->
   <div class="absolute inset-0 opacity-5">
     <div
       class="absolute inset-0"
-      style="background-image: radial-gradient(circle at 25% 25%, #ef4444 1px, transparent 1px), radial-gradient(circle at 75% 75%, #f97316 1px, transparent 1px); background-size: 50px 50px;"
+      style={`background-image: radial-gradient(circle at 25% 25%, var(--brand-red-500) 1px, transparent 1px), radial-gradient(circle at 75% 75%, var(--brand-orange-500) 1px, transparent 1px); background-size: 50px 50px;`}
     ></div>
   </div>
 
@@ -53,11 +53,11 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
       <header class="text-center mb-16">
         <h2
           id="videos-title"
-          class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-r from-red-400 to-orange-400 bg-clip-text text-transparent font-bold leading-tight"
+          class="text-4xl md:text-5xl lg:text-6xl mb-6 gradient-youtube-heading font-bold leading-tight"
         >
           {t(locale, "youtube.title")}
         </h2>
-        <p class="text-gray-400 text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-text-muted text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed">
           {t(locale, "youtube.subtitle")}
         </p>
       </header>
@@ -65,16 +65,16 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
       {!hasVideos ? (
         <!-- Empty State -->
         <div class="text-center py-12">
-          <div class="bg-slate-900/50 border border-slate-700 rounded-lg p-6 max-w-md mx-auto mb-8">
-            <p class="text-gray-300 mb-2">No videos found.</p>
-            <p class="text-gray-400 text-sm">Check that YOUTUBE_API_KEY and YOUTUBE_CHANNEL_ID are configured.</p>
+          <div class="bg-surface-card border border-border-muted rounded-lg p-6 max-w-md mx-auto mb-8">
+            <p class="text-text-secondary mb-2">No videos found.</p>
+            <p class="text-text-muted text-sm">Check that YOUTUBE_API_KEY and YOUTUBE_CHANNEL_ID are configured.</p>
           </div>
 
           <a
             href={YoutubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-red-500/25"
+            class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-brand-red-500 to-brand-orange-500 hover:from-brand-red-600 hover:to-brand-orange-600 text-text-primary rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-brand-red-500/25"
             aria-label="Visit YouTube channel"
           >
             <YoutubeIcon class="w-6 h-6" aria-hidden="true" />
@@ -86,7 +86,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
         <>
           <div class="grid md:grid-cols-2 gap-8 mb-16">
             {videos.map((video) => (
-              <article class="group bg-slate-900/50 backdrop-blur-sm rounded-xl overflow-hidden border border-slate-800 hover:border-red-500/50 transition-all duration-300 transform hover:-translate-y-1">
+              <article class="group bg-surface-card backdrop-blur-sm rounded-xl overflow-hidden border border-border-default hover:border-brand-red-500/50 transition-all duration-300 transform hover:-translate-y-1">
                 <!-- Thumbnail -->
                 <div class="relative aspect-video overflow-hidden">
                   <img
@@ -97,7 +97,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
                   />
 
                   <!-- Gradient Overlay -->
-                  <div class="absolute inset-0 bg-linear-to-t from-slate-900 via-slate-900/50 to-transparent"></div>
+                  <div class="absolute inset-0 bg-linear-to-t from-surface-card-solid via-surface-card-solid/50 to-transparent"></div>
 
                   <!-- Play Button -->
                   <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -105,35 +105,35 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
                       href={`https://www.youtube.com/watch?v=${video.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="w-16 h-16 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300 shadow-2xl"
+                      class="w-16 h-16 bg-brand-red-600 hover:bg-brand-red-500 rounded-full flex items-center justify-center transform hover:scale-110 transition-all duration-300 shadow-2xl"
                       aria-label={`Play ${video.title}`}
                     >
-                      <PlayIcon class="w-8 h-8 text-white ml-1" fill="currentColor" />
+                      <PlayIcon class="w-8 h-8 text-text-primary ml-1" fill="currentColor" />
                     </a>
                   </div>
 
                   <!-- Duration Badge -->
-                  <div class="absolute bottom-4 right-4 bg-black/80 text-white px-2 py-1 rounded text-sm font-medium">
+                  <div class="absolute bottom-4 right-4 bg-black/80 text-text-primary px-2 py-1 rounded text-sm font-medium">
                     {video.duration}
                   </div>
 
                   <!-- Upload Date -->
-                  <div class="absolute top-4 left-4 bg-black/80 text-white px-2 py-1 rounded text-xs">
+                  <div class="absolute top-4 left-4 bg-black/80 text-text-primary px-2 py-1 rounded text-xs">
                     {formatDate(video.publishedAt)}
                   </div>
                 </div>
 
                 <!-- Video Info -->
                 <div class="p-6">
-                  <h3 class="text-xl text-white font-semibold mb-3 group-hover:text-red-400 transition-colors leading-tight">
+                  <h3 class="text-xl text-text-primary font-semibold mb-3 group-hover:text-brand-red-400 transition-colors leading-tight">
                     {video.title}
                   </h3>
 
-                  <p class="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
+                  <p class="text-text-muted text-sm mb-4 line-clamp-2 leading-relaxed">
                     {video.description}
                   </p>
 
-                  <div class="flex items-center justify-between text-sm text-gray-500">
+                  <div class="flex items-center justify-between text-sm text-text-faint">
                     <div class="flex items-center gap-1">
                       <EyeIcon class="w-4 h-4" aria-hidden="true" />
                       <span>{video.views} views</span>
@@ -157,7 +157,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
               href={YoutubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-red-500 to-orange-500 hover:from-red-600 hover:to-orange-600 text-white rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-red-500/25"
+              class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-brand-red-500 to-brand-orange-500 hover:from-brand-red-600 hover:to-brand-orange-600 text-text-primary rounded-full transition-all duration-300 font-medium transform hover:scale-105 shadow-lg shadow-brand-red-500/25"
               aria-label="Visit YouTube channel"
             >
               <YoutubeIcon class="w-6 h-6" aria-hidden="true" />

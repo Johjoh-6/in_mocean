@@ -36,7 +36,7 @@ const navLinks = [
 <header
 	id="header"
 	class:list={[
-		"fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md transition-all duration-300",
+		"fixed top-0 left-0 right-0 z-50 bg-surface-overlay backdrop-blur-md transition-all duration-300",
 		{ "opacity-0": !headerVisible },
 	]}
 >
@@ -55,10 +55,10 @@ const navLinks = [
 					<a
 						href={link.href}
 						class:list={[
-							"rounded-sm px-1 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400/50",
+							"rounded-sm px-1 py-0.5 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50",
 							link.active
-								? "text-orange-400 border-b-2 border-orange-400"
-								: "text-gray-300 hover:text-orange-400 focus:text-orange-400",
+								? "text-brand-orange-400 border-b-2 border-brand-orange-400"
+								: "text-text-secondary hover:text-brand-orange-400 focus:text-brand-orange-400",
 						]}
 						aria-current={link.active ? "page" : undefined}
 					>

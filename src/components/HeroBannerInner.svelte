@@ -128,11 +128,11 @@
 
 		<div
 			bind:this={overlay}
-			class="absolute inset-0 bg-linear-to-b from-black/30 via-transparent to-black/60 opacity-40"
+			class="absolute inset-0 bg-linear-to-b from-surface-overlay/30 via-transparent to-surface-overlay/60 opacity-40"
 		></div>
 
 		<div
-			class="absolute inset-0 flex flex-col items-center justify-center text-white z-10"
+			class="absolute inset-0 flex flex-col items-center justify-center text-text-primary z-10"
 		>
 			<h1
 				bind:this={heroTitle}
@@ -142,7 +142,7 @@
 			</h1>
 			<p
 				bind:this={heroSubtitle}
-				class="text-2xl md:text-3xl text-center text-white/80 max-w-2xl px-4"
+				class="text-2xl md:text-3xl text-center text-text-primary/80 max-w-2xl px-4"
 			>
 				Where Ocean Meets Sound
 			</p>

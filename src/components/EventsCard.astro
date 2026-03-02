@@ -63,20 +63,20 @@ const sameDay = isSameDay(event.dateStart, event.dateEnd);
 
 const accentColors = [
 	{
-		gradient: "from-pink-500 to-purple-600",
-		border: "hover:border-pink-500/50",
+		gradient: "from-brand-pink-500 to-brand-purple-600",
+		border: "hover:border-brand-pink-500/50",
 	},
 	{
-		gradient: "from-cyan-400 to-blue-600",
-		border: "hover:border-cyan-400/50",
+		gradient: "from-brand-cyan-400 to-brand-blue-600",
+		border: "hover:border-brand-cyan-400/50",
 	},
 	{
-		gradient: "from-amber-400 to-orange-600",
-		border: "hover:border-amber-400/50",
+		gradient: "from-brand-amber-400 to-brand-orange-600",
+		border: "hover:border-brand-amber-400/50",
 	},
 	{
-		gradient: "from-emerald-400 to-teal-600",
-		border: "hover:border-emerald-400/50",
+		gradient: "from-brand-emerald-400 to-brand-teal-600",
+		border: "hover:border-brand-emerald-400/50",
 	},
 ];
 const accent = accentColors[index % accentColors.length];
@@ -84,14 +84,14 @@ const accent = accentColors[index % accentColors.length];
 
 <Tag
 	class:list={[
-		"group relative bg-slate-900/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-800 transition-all duration-300 block",
-		hasUrl ? `${accent.border} cursor-pointer` : "border-slate-800/60",
+		"group relative bg-surface-card backdrop-blur-sm rounded-2xl overflow-hidden border border-border-default transition-all duration-300 block",
+		hasUrl ? `${accent.border} cursor-pointer` : "border-border-default/60",
 	]}
 	{...hasUrl ? { href: url, target: "_blank" } : {}}
 >
 	<div class="flex flex-col md:flex-row items-stretch">
 		<div
-			class="md:w-24 flex md:flex-col items-center justify-center p-4 bg-linear-to-br from-pink-500 to-purple-600 text-white"
+			class="md:w-24 flex md:flex-col items-center justify-center p-4 bg-linear-to-br from-brand-pink-500 to-brand-purple-600 text-text-primary"
 		>
 			<div class="text-center">
 				<div class="text-3xl md:text-4xl font-bold mb-1">
@@ -110,24 +110,28 @@ const accent = accentColors[index % accentColors.length];
 			<div class="flex-1 p-4 md:p-5">
 				<h3
 					class:list={[
-						"text-xl md:text-2xl text-white mb-3 transition-colors",
-						hasUrl && "group-hover:text-pink-400",
+						"text-xl md:text-2xl text-text-primary mb-3 transition-colors",
+						hasUrl && "group-hover:text-brand-pink-400",
 					]}
 				>
 					{event.title}
 				</h3>
 
 				<div class="space-y-2 mb-4">
-					<div class="flex items-center gap-2 text-gray-400 text-sm">
-						<MapPin class="w-4 h-4 text-pink-400 shrink-0" />
+					<div
+						class="flex items-center gap-2 text-text-muted text-sm"
+					>
+						<MapPin class="w-4 h-4 text-brand-pink-400 shrink-0" />
 						<span
 							>{event.location}, {event.city}, {
 								event.country
 							}</span
 						>
 					</div>
-					<div class="flex items-center gap-2 text-gray-400 text-sm">
-						<Clock class="w-4 h-4 text-pink-400 shrink-0" />
+					<div
+						class="flex items-center gap-2 text-text-muted text-sm"
+					>
+						<Clock class="w-4 h-4 text-brand-pink-400 shrink-0" />
 						{
 							sameDay ? (
 								<span>
@@ -137,11 +141,11 @@ const accent = accentColors[index % accentColors.length];
 							) : (
 								<span>
 									{getTime(event.dateStart)}{" "}
-									<span class="text-gray-500">
+									<span class="text-text-faint">
 										({getShortDate(event.dateStart)})
 									</span>{" "}
 									– {getTime(event.dateEnd)}{" "}
-									<span class="text-gray-500">
+									<span class="text-text-faint">
 										({getShortDate(event.dateEnd)})
 									</span>
 								</span>
@@ -152,7 +156,7 @@ const accent = accentColors[index % accentColors.length];
 
 				{
 					hasUrl && (
-						<p class="flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors group text-sm">
+						<p class="flex items-center gap-2 text-brand-pink-400 hover:text-brand-pink-300 transition-colors group text-sm">
 							<span>{t(locale, "events.details")}</span>
 							<ArrowRight class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
 						</p>
@@ -183,7 +187,7 @@ const accent = accentColors[index % accentColors.length];
 					)
 				}
 				<div
-					class="absolute inset-0 bg-linear-to-br from-slate-900/80 to-transparent md:from-transparent md:to-slate-900/0"
+					class="absolute inset-0 bg-linear-to-br from-surface-card-solid/80 to-transparent md:from-transparent md:to-surface-card-solid/0"
 				>
 				</div>
 			</div>

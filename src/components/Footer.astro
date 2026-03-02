@@ -12,16 +12,16 @@ const startYear = 2026;
 
 const copyright =
 	currentYear === startYear
-		? `© ${currentYear} in_m’Ocean`
-		: `© ${startYear} - ${currentYear} in_m’Ocean`;
+		? `© ${currentYear} in_m'Ocean`
+		: `© ${startYear} - ${currentYear} in_m'Ocean`;
 ---
 
 <footer
-	class="bottom-0 left-0 right-0 z-10 py-8 border-t border-slate-800/50 backdrop-blur-sm"
+	class="bottom-0 left-0 right-0 z-10 py-8 border-t border-border-subtle backdrop-blur-sm"
 >
 	<div class="container mx-auto px-4">
 		<div
-			class="flex flex-col md:flex-row items-center justify-between gap-4 text-gray-500 text-sm"
+			class="flex flex-col md:flex-row items-center justify-between gap-4 text-text-faint text-sm"
 		>
 			<p>{copyright}. {t(locale, "footer.copyright")}</p>
 			<p class="flex items-center gap-2">

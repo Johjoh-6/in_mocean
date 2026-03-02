@@ -27,16 +27,16 @@ const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 			class="w-full h-full bg-cover bg-center bg-no-repeat"
 			style={`background-image: url('${optimizedBackgroundImage.src}')`}
 		>
-			<div class="absolute inset-0 bg-linear-to-b from-slate-950/85 via-slate-950/80 to-slate-950/90 backdrop-blur-[1px]"></div>
+			<div class="absolute inset-0 bg-linear-to-b from-surface-body/85 via-surface-body/80 to-surface-body/90 backdrop-blur-[1px]"></div>
 		</div>
 	</div>
 
 	<!-- Animated background elements -->
 	<div class="absolute inset-0 z-1 pointer-events-none">
-		<div class="absolute top-1/4 left-1/4 w-2 h-2 bg-orange-400/60 rounded-full animate-pulse animation-delay-0"></div>
-		<div class="absolute top-1/3 right-1/4 w-1 h-1 bg-pink-400/60 rounded-full animate-pulse animation-delay-1000"></div>
-		<div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-purple-400/60 rounded-full animate-pulse animation-delay-2000"></div>
-		<div class="absolute bottom-1/3 right-1/3 w-1 h-1 bg-blue-400/60 rounded-full animate-pulse animation-delay-3000"></div>
+		<div class="absolute top-1/4 left-1/4 w-2 h-2 bg-brand-orange-400/60 rounded-full animate-pulse animation-delay-0"></div>
+		<div class="absolute top-1/3 right-1/4 w-1 h-1 bg-brand-pink-400/60 rounded-full animate-pulse animation-delay-1000"></div>
+		<div class="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-brand-purple-400/60 rounded-full animate-pulse animation-delay-2000"></div>
+		<div class="absolute bottom-1/3 right-1/3 w-1 h-1 bg-brand-blue-400/60 rounded-full animate-pulse animation-delay-3000"></div>
 	</div>
 
 	<div class="container mx-auto px-4 lg:px-8 relative z-10">
@@ -45,11 +45,11 @@ const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 			<header class="text-center mb-16">
 				<h2
 					id="contact-title"
-					class="text-4xl md:text-6xl lg:text-7xl mb-8 bg-linear-to-r from-orange-400 via-pink-400 to-purple-400 bg-clip-text text-transparent font-bold leading-tight"
+					class="text-4xl md:text-6xl lg:text-7xl mb-8 gradient-heading font-bold leading-tight"
 				>
 					{t(locale, "contact.connect")}
 				</h2>
-				<p class="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
+				<p class="text-lg md:text-xl lg:text-2xl text-text-secondary leading-relaxed max-w-3xl mx-auto">
 					{t(locale, "contact.subtitle")}
 				</p>
 			</header>
@@ -65,7 +65,7 @@ const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 							href={link.href}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="group relative bg-slate-900/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-slate-700/50 hover:border-slate-600/80 focus:border-slate-600/80 focus:outline-none focus:ring-4 focus:ring-orange-500/20 transition-all duration-500 overflow-hidden block transform hover:-translate-y-2 hover:shadow-2xl"
+							class="group relative bg-surface-card-solid/60 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-border-muted hover:border-border-default/80 focus:border-border-default/80 focus:outline-none focus:ring-4 focus:ring-brand-orange-500/20 transition-all duration-500 overflow-hidden block transform hover:-translate-y-2 hover:shadow-2xl"
 							aria-label={`Visit ${link.label}: ${link.handle}`}
 						>
 							<!-- Hover background effect -->
@@ -79,21 +79,21 @@ const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 							<div class="relative flex items-center gap-4 lg:gap-6">
 								<!-- Icon -->
 								<div class={`w-14 h-14 lg:w-16 lg:h-16 rounded-full bg-linear-to-br ${link.color} flex items-center justify-center shrink-0 group-hover:scale-110 group-focus:scale-110 transition-all duration-500 shadow-lg`}>
-									<IconComponent class="w-7 h-7 lg:w-8 lg:h-8 text-white" aria-hidden="true" />
+									<IconComponent class="w-7 h-7 lg:w-8 lg:h-8 text-text-primary" aria-hidden="true" />
 								</div>
 
 								<!-- Content -->
 								<div class="text-left flex-1 min-w-0">
-									<div class="text-lg lg:text-xl font-semibold text-white mb-1 group-hover:text-white transition-colors duration-300">
+									<div class="text-lg lg:text-xl font-semibold text-text-primary mb-1 group-hover:text-text-primary transition-colors duration-300">
 										{link.label}
 									</div>
-									<div class="text-sm lg:text-base text-gray-400 group-hover:text-gray-300 transition-colors duration-300 truncate">
+									<div class="text-sm lg:text-base text-text-muted group-hover:text-text-secondary transition-colors duration-300 truncate">
 										{link.handle}
 									</div>
 								</div>
 
 								<!-- Arrow indicator -->
-								<div class="flex items-center justify-center w-8 h-8 text-gray-400 group-hover:text-white group-focus:text-white transition-all duration-300 transform group-hover:translate-x-1 group-focus:translate-x-1">
+								<div class="flex items-center justify-center w-8 h-8 text-text-muted group-hover:text-text-primary group-focus:text-text-primary transition-all duration-300 transform group-hover:translate-x-1 group-focus:translate-x-1">
 									<ExternalLink class="w-5 h-5" aria-hidden="true" />
 								</div>
 							</div>
@@ -102,7 +102,7 @@ const optimizedBackgroundImage = await getImage({ src: HeroBannerImage })
 					);
 				})}
 			</div>
-			<div class="text-center text-gray-400 text-lg lg:text-xl italic font-light">
+			<div class="text-center text-text-muted text-lg lg:text-xl italic font-light">
 							<span role="img" aria-label="Music waves">≪</span>
 							{t(locale, "contact.caption")}
 							<span role="img" aria-label="Music waves">≫</span>

@@ -112,7 +112,7 @@
 <button
 	bind:this={toggleButton}
 	type="button"
-	class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg text-gray-300 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/50 transition-colors"
+	class="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg text-text-secondary hover:text-brand-orange-400 focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50 transition-colors"
 	aria-expanded={isOpen}
 	aria-controls="mobile-menu"
 	aria-label={isOpen ? "Close menu" : "Open menu"}
@@ -153,7 +153,7 @@
 <div
 	bind:this={panelEl}
 	id="mobile-menu"
-	class="fixed top-0 right-0 h-full w-72 max-w-[80vw] bg-slate-950/95 backdrop-blur-lg z-999 transform transition-transform duration-300 ease-in-out md:hidden {isOpen
+	class="fixed top-0 right-0 h-full w-72 max-w-[80vw] bg-surface-body/95 backdrop-blur-lg z-999 transform transition-transform duration-300 ease-in-out md:hidden {isOpen
 		? 'translate-x-0'
 		: 'translate-x-full'}"
 	role="dialog"
@@ -167,7 +167,7 @@
 	<div class="flex justify-end p-4">
 		<button
 			type="button"
-			class="w-10 h-10 flex items-center justify-center rounded-lg text-gray-300 hover:text-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-400/50 transition-colors"
+			class="w-10 h-10 flex items-center justify-center rounded-lg text-text-secondary hover:text-brand-orange-400 focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50 transition-colors"
 			aria-label="Close menu"
 			onclick={close}
 		>
@@ -193,9 +193,9 @@
 			{#each links as link (link.href)}
 				<a
 					href={link.href}
-					class="text-lg rounded-lg px-4 py-3 transition-colors focus:outline-none focus:ring-2 focus:ring-orange-400/50 {link.active
-						? 'text-orange-400 bg-white/5 border-l-2 border-orange-400'
-						: 'text-gray-300 hover:text-orange-400 focus:text-orange-400 hover:bg-white/5'}"
+					class="text-lg rounded-lg px-4 py-3 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange-400/50 {link.active
+						? 'text-brand-orange-400 bg-white/5 border-l-2 border-brand-orange-400'
+						: 'text-text-secondary hover:text-brand-orange-400 focus:text-brand-orange-400 hover:bg-white/5'}"
 					aria-current={link.active ? "page" : undefined}
 					onclick={close}
 				>

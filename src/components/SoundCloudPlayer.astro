@@ -56,13 +56,13 @@ const thumbnailUrl = embedData?.thumbnail_url || "";
 			thumbnailUrl={thumbnailUrl}
 		/>
 	) : (
-		<div class="fallback bg-slate-800 rounded-lg p-6 text-center">
-			<p class="text-gray-400 mb-4">Unable to load track</p>
+		<div class="fallback bg-surface-card-solid rounded-lg p-6 text-center">
+			<p class="text-text-muted mb-4">Unable to load track</p>
 			<a
 				href={url}
 				target="_blank"
 				rel="noopener noreferrer"
-				class="text-orange-400 hover:text-orange-300"
+				class="text-brand-orange-400 hover:text-brand-orange-400/80"
 			>
 				{title}
 			</a>

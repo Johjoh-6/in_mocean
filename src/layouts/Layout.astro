@@ -44,7 +44,7 @@ const currentLocale = (Astro.currentLocale as Locale) || locale;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body class="relative bg-slate-950">
+	<body class="relative bg-surface-body">
 		<Header locale={currentLocale} headerVisible={headerVisible} />
 		<main>
 			<slot />

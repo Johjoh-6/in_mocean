@@ -47,7 +47,9 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 			role="img"
 			aria-label="in_m'Ocean beach background"
 		>
-			<div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[1px]">
+			<div
+				class="absolute inset-0 bg-surface-body/80 backdrop-blur-[1px]"
+			>
 			</div>
 		</div>
 
@@ -55,12 +57,12 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 			<div class="text-center mb-16">
 				<h1
 					id="events-page-title"
-					class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-br from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-bold leading-tight"
+					class="text-4xl md:text-5xl lg:text-6xl mb-6 gradient-events-heading font-bold leading-tight"
 				>
 					{t(locale, "events.titlepassed")}
 				</h1>
 				<p
-					class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+					class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
 				>
 					{t(locale, "events.description")}
 				</p>
@@ -80,7 +82,7 @@ const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
 						</div>
 					) : (
 						<div class="text-center py-16">
-							<p class="text-gray-400 text-2xl md:text-3xl lg:text-4xl">
+							<p class="text-text-muted text-2xl md:text-3xl lg:text-4xl">
 								{t(locale, "events.noeventpassed") ??
 									"No passed events at the moment."}
 							</p>

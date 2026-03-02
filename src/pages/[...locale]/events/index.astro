@@ -50,7 +50,9 @@ const Calendar = getIcon("calendar");
 			role="img"
 			aria-label="in_m'Ocean beach background"
 		>
-			<div class="absolute inset-0 bg-slate-950/80 backdrop-blur-[1px]">
+			<div
+				class="absolute inset-0 bg-surface-body/80 backdrop-blur-[1px]"
+			>
 			</div>
 		</div>
 
@@ -58,12 +60,12 @@ const Calendar = getIcon("calendar");
 			<div class="text-center mb-16">
 				<h1
 					id="events-page-title"
-					class="text-4xl md:text-5xl lg:text-6xl mb-6 bg-linear-to-br from-pink-400 via-purple-400 to-blue-400 bg-clip-text text-transparent font-bold leading-tight"
+					class="text-4xl md:text-5xl lg:text-6xl mb-6 gradient-events-heading font-bold leading-tight"
 				>
 					{t(locale, "events.title")}
 				</h1>
 				<p
-					class="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
+					class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
 				>
 					{t(locale, "events.description")}
 				</p>
@@ -83,7 +85,7 @@ const Calendar = getIcon("calendar");
 						</div>
 					) : (
 						<div class="text-center py-16">
-							<p class="text-gray-400 text-2xl md:text-3xl lg:text-4xl">
+							<p class="text-text-muted text-2xl md:text-3xl lg:text-4xl">
 								{t(locale, "events.noevent") ??
 									"No upcoming events at the moment."}
 							</p>
@@ -95,7 +97,7 @@ const Calendar = getIcon("calendar");
 		<div class="text-center relative z-10 container mx-auto px-4 lg:px-8">
 			<a
 				href={navEvents}
-				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-pink-500 to-purple-600 text-white rounded-full text-lg font-medium hover:from-pink-600 hover:to-purple-700 focus:from-pink-600 focus:to-purple-700 focus:outline-none focus:ring-4 focus:ring-pink-500/30 transition-all duration-300 shadow-lg shadow-pink-500/25 hover:shadow-xl hover:shadow-pink-500/30 transform hover:-translate-y-1"
+				class="inline-flex items-center gap-3 px-8 py-4 bg-linear-to-r from-brand-pink-500 to-brand-purple-600 text-text-primary rounded-full text-lg font-medium hover:from-brand-pink-600 hover:to-brand-purple-700 focus:from-brand-pink-600 focus:to-brand-purple-700 focus:outline-none focus:ring-4 focus:ring-brand-pink-500/30 transition-all duration-300 shadow-lg shadow-brand-pink-500/25 hover:shadow-xl hover:shadow-brand-pink-500/30 transform hover:-translate-y-1"
 				aria-label={`${t(locale, "events.buttonpassed")}`}
 			>
 				<Calendar class="w-5 h-5" aria-hidden="true" />
