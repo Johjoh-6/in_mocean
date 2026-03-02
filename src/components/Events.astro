@@ -16,12 +16,15 @@ const basePath = locale === "en" ? "" : `/${locale}`;
 const navEvents = `${basePath}/events`;
 
 // get the 3 soonest events not already past
-const events = (await getCollection("events"))
+const events = (
+	await getCollection("events", ({ data }) => {
+		return new Date(data.date) > new Date();
+	})
+)
 	.sort(
 		(a, b) =>
 			new Date(a.data.date).getTime() - new Date(b.data.date).getTime(),
 	)
-	.filter((event) => new Date(event.data.date) > new Date())
 	.slice(0, 3);
 
 const optimizedBackgroundImage = await getImage({ src: backgroundImageUrl });
