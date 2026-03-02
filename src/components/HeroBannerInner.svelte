@@ -3,7 +3,7 @@
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-	export let imageSrc: string;
+	const { imageSrc }: { imageSrc: string } = $props();
 
 	let heroContainer: HTMLElement;
 	let backgroundImage: HTMLElement;
