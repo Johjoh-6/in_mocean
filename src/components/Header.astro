@@ -3,6 +3,8 @@ import { Image } from "astro:assets";
 import Logo from "../assets/logo.avif";
 import { t, type Locale } from "../translations";
 import MobileNav from "./MobileNav.svelte";
+import LocaleSelector from "./LocaleSelector.svelte";
+import { locales, localizePathname } from "../utils/i18n";
 
 interface Props {
 	locale: Locale;
@@ -31,6 +33,14 @@ const navLinks = [
 	},
 	{ href: `${basePath}/#contact`, label: t(locale, "header.contact") },
 ].map((link) => ({ ...link, active: isActive(link.href) }));
+
+// Build locale options with localized URLs for the current page
+const localeOptions = locales.map((l) => ({
+	code: l.code,
+	label: l.label,
+	flag: l.flag,
+	href: localizePathname(Astro.url.pathname, l.code),
+}));
 ---
 
 <header
@@ -66,9 +76,21 @@ const navLinks = [
 					</a>
 				))
 			}
+
+			{/* Desktop locale selector */}
+			<LocaleSelector
+				client:load
+				currentLocale={locale}
+				localeOptions={localeOptions}
+			/>
 		</div>
 
 		{/* Mobile nav */}
-		<MobileNav client:only="svelte" links={navLinks} />
+		<MobileNav
+			client:only="svelte"
+			links={navLinks}
+			currentLocale={locale}
+			localeOptions={localeOptions}
+		/>
 	</nav>
 </header>

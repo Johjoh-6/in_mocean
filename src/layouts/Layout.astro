@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import type { Locale } from "../translations";
+import { prefixedCodes } from "../utils/i18n";
 import Analytics from "@vercel/analytics/astro";
 // Supports weights 200-900
 import "@fontsource-variable/source-serif-4";
@@ -19,6 +20,9 @@ const {
 	headerVisible = false,
 } = Astro.props;
 const currentLocale = (Astro.currentLocale as Locale) || locale;
+
+// Serialize for the inline redirect script
+const supportedJson = JSON.stringify(prefixedCodes);
 ---
 
 <!doctype html>
@@ -26,7 +30,6 @@ const currentLocale = (Astro.currentLocale as Locale) || locale;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
 		<link rel="icon" href="/favicon.ico" />
 		<script is:inline>
 			document.addEventListener("astro:after-swap", () => {
@@ -39,6 +42,52 @@ const currentLocale = (Astro.currentLocale as Locale) || locale;
 					document.documentElement.classList.add("dark");
 				}
 			});
+		</script>
+		<script is:inline define:vars={{ supportedJson, currentLocale }}>
+			// ---- Persist current locale ----
+			try {
+				localStorage.setItem("locale", currentLocale);
+			} catch (e) {
+				// localStorage unavailable (private browsing, etc.) — ignore
+			}
+
+			// ---- Auto-redirect on root "/" only ----
+			(function () {
+				var path = window.location.pathname.replace(/\/$/, "") || "/";
+				if (path !== "/") return;
+
+				var supported = JSON.parse(supportedJson);
+
+				// If user has explicitly chosen a locale, respect that
+				var chosen = localStorage.getItem("locale");
+				if (chosen === "en") return;
+
+				if (chosen && supported.indexOf(chosen) !== -1) {
+					window.location.replace("/" + chosen + "/");
+					return;
+				}
+
+				// Detect from browser languages
+				var langs = navigator.languages
+					? navigator.languages
+					: [navigator.language];
+				for (var i = 0; i < langs.length; i++) {
+					var lang = langs[i].toLowerCase();
+					for (var j = 0; j < supported.length; j++) {
+						if (
+							lang === supported[j] ||
+							lang.indexOf(supported[j] + "-") === 0
+						) {
+							localStorage.setItem("locale", supported[j]);
+							window.location.replace("/" + supported[j] + "/");
+							return;
+						}
+					}
+				}
+
+				// No match — stay on English
+				localStorage.setItem("locale", "en");
+			})();
 		</script>
 		<Analytics />
 		<meta name="generator" content={Astro.generator} />

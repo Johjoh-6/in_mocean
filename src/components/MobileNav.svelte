@@ -7,11 +7,20 @@
 		active: boolean;
 	}
 
-	interface Props {
-		links: NavLink[];
+	interface LocaleOption {
+		code: string;
+		label: string;
+		flag: string;
+		href: string;
 	}
 
-	const { links }: Props = $props();
+	interface Props {
+		links: NavLink[];
+		currentLocale: string;
+		localeOptions: LocaleOption[];
+	}
+
+	const { links, currentLocale, localeOptions }: Props = $props();
 
 	let isOpen = $state(false);
 	let toggleButton: HTMLElement;
@@ -82,6 +91,15 @@
 				panelEl?.querySelector<HTMLElement>("a[href], button");
 			firstFocusable?.focus();
 		}
+	}
+
+	function handleLocaleSelect(locale: string) {
+		try {
+			localStorage.setItem("locale", locale);
+		} catch {
+			// localStorage unavailable — ignore
+		}
+		close();
 	}
 
 	onMount(() => {
@@ -188,7 +206,8 @@
 		</button>
 	</div>
 
-	<div class="flex flex-col h-full pb-8 px-6">
+	<div class="flex flex-col h-[calc(100%-72px)] pb-8 px-6">
+		<!-- Navigation links -->
 		<nav class="flex flex-col gap-2" aria-label="Mobile navigation">
 			{#each links as link (link.href)}
 				<a
@@ -203,5 +222,56 @@
 				</a>
 			{/each}
 		</nav>
+
+		<!-- Spacer -->
+		<div class="flex-1"></div>
+
+		<!-- Locale selector -->
+		<div class="border-t border-border-muted pt-4">
+			<p
+				class="text-xs text-text-faint uppercase tracking-wider font-medium px-4 mb-2"
+			>
+				Language
+			</p>
+			<div
+				class="grid grid-cols-2 gap-2"
+				role="listbox"
+				aria-label="Select language"
+			>
+				{#each localeOptions as option (option.code)}
+					<a
+						href={option.href}
+						role="option"
+						aria-selected={option.code === currentLocale}
+						class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm transition-colors {option.code ===
+						currentLocale
+							? 'text-brand-orange-400 bg-white/10 border border-brand-orange-400/30'
+							: 'text-text-secondary border border-transparent hover:text-brand-orange-400 hover:bg-white/5'}"
+						onclick={() => handleLocaleSelect(option.code)}
+					>
+						<span class="text-base leading-none" aria-hidden="true"
+							>{option.flag}</span
+						>
+						<span class="truncate">{option.label}</span>
+						{#if option.code === currentLocale}
+							<svg
+								class="w-3.5 h-3.5 text-brand-orange-400 ml-auto shrink-0"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								stroke-width="2.5"
+								aria-hidden="true"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M5 13l4 4L19 7"
+								/>
+							</svg>
+						{/if}
+					</a>
+				{/each}
+			</div>
+		</div>
 	</div>
 </div>
