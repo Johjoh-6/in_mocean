@@ -12,6 +12,9 @@ import {
 	MapPin,
 	Clock,
 	ArrowRight,
+	CalendarPlus,
+	Navigation,
+	ChevronDown,
 	type AstroComponent,
 } from "@lucide/astro";
 
@@ -37,6 +40,9 @@ export const iconMap: Record<string, AstroComponent> = {
 	mapPin: MapPin,
 	clock: Clock,
 	"arrow-right": ArrowRight,
+	"calendar-plus": CalendarPlus,
+	navigation: Navigation,
+	"chevron-down": ChevronDown,
 };
 
 export function getIcon(iconName: string): AstroComponent {
