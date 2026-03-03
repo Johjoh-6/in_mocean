@@ -3,6 +3,7 @@ import { parseDate } from "./date";
 /**
  * Calendar utility — generates links/URIs for adding events
  * to Google Calendar, Apple Calendar (.ics), and Outlook Web.
+ * Also generates platform-aware map URLs (Google Maps + Apple Maps).
  */
 
 /**
@@ -42,6 +43,12 @@ export interface CalendarLinks {
 	google: string;
 	ics: string;
 	outlook: string;
+}
+
+export interface MapsUrls {
+	google: string;
+	apple: string;
+	query: string;
 }
 
 /**
@@ -170,11 +177,17 @@ export function getIcsDataUri(event: CalendarEventInput): string {
 }
 
 /**
- * Build a Google Maps search URL from event location fields.
+ * Build Google Maps and Apple Maps search URLs from event location fields.
+ * The client component picks the right one based on the user's platform.
  */
-export function getMapsUrl(event: CalendarEventInput): string {
+export function getMapsUrls(event: CalendarEventInput): MapsUrls {
 	const query = buildLocation(event);
-	return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
+	const encoded = encodeURIComponent(query);
+	return {
+		google: `https://www.google.com/maps/search/?api=1&query=${encoded}`,
+		apple: `https://maps.apple.com/?q=${encoded}`,
+		query,
+	};
 }
 
 /**
