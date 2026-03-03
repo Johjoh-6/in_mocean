@@ -10,7 +10,7 @@ export const translations = {
 		subtitle: "Produtor de Música Eletrônica e DJ",
 	},
 	about: {
-		role: "DJ Profissional",
+		role: "In_m’Ocean",
 		title: "Sobre Min",
 		description:
 			"Transformando ondas sonoras em experiências inesquecíveis. Com mais de 10 anos de experiência, especializado em criar atmosferas únicas que conectam o ritmo do oceano com batidas eletrônicas.",
@@ -58,7 +58,7 @@ export const translations = {
 	},
 	footer: {
 		copyright: "Todos os direitos reservados.",
-		location: "Baseado em Florianópolis, SC - Brasil 🇧🇷",
+		location: "Baseado em Santiago - Chile 🇨🇱",
 	},
 	date: {
 		months: {

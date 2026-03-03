@@ -10,7 +10,7 @@ export const translations = {
 		subtitle: "Producteur de Musique Électronique et DJ",
 	},
 	about: {
-		role: "DJ Professionnel",
+		role: "In_m’Ocean",
 		title: "À propos",
 		description:
 			"Je m'appelle Max Nunes, un producteur de musique électronique et DJ brésilien basé à Florianópolis, SC - Brésil 🇧🇷. Je me spécialise dans la création de sons immersifs qui combinent des rythmes électroniques avec des éléments naturels, créant ainsi une expérience unique et inoubliable pour mon public.",
@@ -58,7 +58,7 @@ export const translations = {
 	},
 	footer: {
 		copyright: "Tous les droits réservés.",
-		location: "Basé à Florianópolis, SC - Brésil 🇧🇷",
+		location: "Basé à Santiago - Chile 🇨🇱",
 	},
 	date: {
 		months: {

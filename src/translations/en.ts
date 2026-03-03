@@ -10,13 +10,12 @@ export const translations = {
 		subtitle: "Electronic Music Producer & DJ",
 	},
 	about: {
-		role: "DJ",
+		role: "In_m’Ocean",
 		title: "About Me",
 		description:
-			"My name is Max Nunes, a Brazilian electronic music producer and DJ based in Florianópolis, SC - Brazil 🇧🇷. I specialize in creating immersive soundscapes that blend electronic beats with natural elements, creating a unique and unforgettable experience for my audience.",
+			"My name is Max Nunes, a Brazilian DJ based in Santiago, Chile. Inspired by the blue ocean, the fading lights of sunsets, and the energy of my hometown, I create soundscapes rooted in Liquid and Shimmer Drum and Bass, fusioning electronic rhythms with aquatic textures to evoke the precise instant before immersion—the suspended breath, the rising pulse, depth unfolding.",
 		mission:
-			"My mission is to create magical moments where music and nature meet, taking you on a sonic journey from in_m’Ocean to sunrise.",
-
+			"My mission is to create mystical moments where music and nature meet, taking you on a sonic journey from sunset to sunrise.",
 		stats: {
 			shows: "Shows Realized",
 			followers: "Followers",
@@ -27,7 +26,7 @@ export const translations = {
 	events: {
 		title: "Next Shows",
 		titlepassed: "Past Shows",
-		description: "Come feel the energy of the in_m’Ocean",
+		description: "Be part of the energy as it pulse ",
 		button: "View Full Agenda",
 		buttonpassed: "View Past Agenda",
 		details: "View Details",
@@ -37,7 +36,7 @@ export const translations = {
 	},
 	soundcloud: {
 		title: "My Mixes",
-		subtitle: "Listen and feel the ocean vibe in every track",
+		subtitle: "Feel the ocean in every track ",
 		button: "View SoundCloud Profile",
 		play: "Click to load player",
 	},
@@ -48,17 +47,17 @@ export const translations = {
 	},
 	instagram: {
 		title: "Follow me on Instagram",
-		subtitle: "Stay updated with my latest creations",
+		subtitle: "Stay tuned with the latest insights",
 		button: "View Instagram Profile",
 	},
 	contact: {
 		connect: "Connect",
-		subtitle: "Follow my musical journey through the waves of sound",
+		subtitle: "Follow the journey through waves and sound",
 		caption: "Where the ocean meets the sound, magic happens",
 	},
 	footer: {
 		copyright: "All rights reserved.",
-		location: "Based in Florianópolis, SC - Brazil 🇧🇷",
+		location: "Based in Santiago - Chile 🇨🇱",
 	},
 	date: {
 		months: {
