@@ -10,10 +10,10 @@ export const translations = {
 		subtitle: "Electronic Music Producer & DJ",
 	},
 	about: {
-		role: "In_m’Ocean",
+		role: "in_m'Ócean",
 		title: "About Me",
 		description:
-			"My name is Max Nunes, a Brazilian DJ based in Santiago, Chile. Inspired by the blue ocean, the fading lights of sunsets, and the energy of my hometown, I create soundscapes rooted in Liquid and Shimmer Drum and Bass, fusioning electronic rhythms with aquatic textures to evoke the precise instant before immersion—the suspended breath, the rising pulse, depth unfolding.",
+			"My name is Max Nunes, a Brazilian DJ based in Santiago, Chile. Inspired by the blue ocean, the fading light of sunset, and the energy of my hometown, I create soundscapes rooted in Liquid and Shimmer Drum & Bass, fusioning electronic rhythms with aquatic textures to evoke the precise instant before immersion—the suspended breath, the rising pulse, depth unfolding.",
 		mission:
 			"My mission is to create mystical moments where music and nature meet, taking you on a sonic journey from sunset to sunrise.",
 		stats: {
@@ -26,7 +26,7 @@ export const translations = {
 	events: {
 		title: "Next Shows",
 		titlepassed: "Past Shows",
-		description: "Be part of the energy as it pulse ",
+		description: "Be part of this shimmering energy",
 		button: "View Full Agenda",
 		buttonpassed: "View Past Agenda",
 		details: "View Details",
@@ -41,7 +41,7 @@ export const translations = {
 	},
 	soundcloud: {
 		title: "My Mixes",
-		subtitle: "Feel the ocean in every track ",
+		subtitle: "Feel the ocean pulse in every set",
 		button: "View SoundCloud Profile",
 		play: "Click to load player",
 	},
@@ -58,7 +58,7 @@ export const translations = {
 	contact: {
 		connect: "Connect",
 		subtitle: "Follow the journey through waves and sound",
-		caption: "Where the ocean meets the sound, magic happens",
+		caption: "When the ocean meets the sound, magic happens",
 	},
 	footer: {
 		copyright: "All rights reserved.",

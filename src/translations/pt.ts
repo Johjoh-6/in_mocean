@@ -10,12 +10,12 @@ export const translations = {
 		subtitle: "Produtor de Música Eletrônica e DJ",
 	},
 	about: {
-		role: "In_m’Ocean",
-		title: "Sobre Min",
+		role: "in_m'Ócean",
+		title: "Sobre Mim",
 		description:
-			"Transformando ondas sonoras em experiências inesquecíveis. Com mais de 10 anos de experiência, especializado em criar atmosferas únicas que conectam o ritmo do oceano com batidas eletrônicas.",
+			"Meu nome é Max Nunes, um DJ brasileiro radicado em Santiago, Chile. Inspirado pelo azul do oceano, pela luz tênue do pôr do sol e pela energia da minha cidade natal, crio paisagens sonoras com raízes no Liquid e Shimmer Drum & Bass, fundindo ritmos eletrônicos com texturas aquáticas para evocar o instante preciso antes da imersão — a respiração suspensa, a pulsação crescente, a profundidade se revelando.",
 		mission:
-			"Minha missão é criar momentos mágicos onde a música e a natureza se encontram, levando você em uma jornada sonora do pôr do sol até o amanhecer.",
+			"Minha missão é criar momentos místicos onde a música e a natureza se encontram, levando você a uma jornada sonora do pôr do sol ao amanhecer.",
 		stats: {
 			shows: "Shows Realizados",
 			followers: "Fãs Conectados",
@@ -26,7 +26,7 @@ export const translations = {
 	events: {
 		title: "Próximos Shows",
 		titlepassed: "Shows Passados",
-		description: "Venha sentir a energia do pôr do sol",
+		description: "Faça parte dessa energia cintilante",
 		button: "Ver Agenda Completa",
 		buttonpassed: "Ver Agenda Passada",
 		details: "Ver Detalhes",
@@ -41,7 +41,7 @@ export const translations = {
 	},
 	soundcloud: {
 		title: "Meus Mixes",
-		subtitle: "Ouça e sinta a vibe do oceano em cada faixa",
+		subtitle: "Sinta a pulsação do oceano em cada faixa",
 		button: "Ver Perfil no SoundCloud",
 		play: "Clicar para carregar o player",
 	},
@@ -52,18 +52,18 @@ export const translations = {
 	},
 	instagram: {
 		title: "Seguindo em Instagram",
-		subtitle: "Seguindo minha última criação",
+		subtitle: "Fique por dentro das últimas novidades",
 		button: "Ver Perfil no Instagram",
 	},
 
 	contact: {
 		connect: "Conecte-se",
-		subtitle: "Siga minha jornada musical através das ondas sonoras",
-		caption: "Onde o oceano encontra o som, a mágica acontece",
+		subtitle: "Siga-me nessa jornada através das ondas e do som",
+		caption: "Cuando o oceano encontra o som, a magia acontece.",
 	},
 	footer: {
 		copyright: "Todos os direitos reservados.",
-		location: "Baseado em Santiago - Chile 🇨🇱",
+		location: "Residente en Santiago - Chile 🇨🇱",
 	},
 	date: {
 		months: {

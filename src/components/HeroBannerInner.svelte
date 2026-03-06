@@ -138,13 +138,13 @@
 				bind:this={heroTitle}
 				class="text-5xl md:text-8xl font-black mb-6 text-center"
 			>
-				in_m'Ocean
+				in_m'Ócean
 			</h1>
 			<p
 				bind:this={heroSubtitle}
 				class="text-2xl md:text-3xl text-center text-text-primary/80 max-w-2xl px-4"
 			>
-				Where Ocean Meets Sound
+				Liquid & Shimmer
 			</p>
 		</div>
 	</div>

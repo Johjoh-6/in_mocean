@@ -10,12 +10,12 @@ export const translations = {
 		subtitle: "Productor de Música Electrónica y DJ",
 	},
 	about: {
-		role: "In_m’Ocean",
+		role: "in_m'Ócean",
 		title: "Acerca de",
 		description:
-			"Mi nombre es Max Nunes, un productor de música electrónica y DJ brasileño basado en Florianópolis, SC - Brasil 🇧🇷. Me especializo en crear sonidos inmersivos que combinan ritmos electrónicos con elementos naturales, creando una experiencia única e inolvidable para mi audiencia.",
+			"Me llamo Max Nunes, DJ brasileño residente en Santiago de Chile. Inspirado por el azul del océano, la luz menguante del atardecer y la energía de mi ciudad natal, creo paisajes sonoros con raíces en el Liquid y Shimmer Drum & Bass, fusionando ritmos electrónicos con texturas acuáticas para evocar el instante preciso antes de la inmersión: la respiración suspendida, el pulso ascendente, la profundidad que se despliega.",
 		mission:
-			"Mi misión es crear momentos mágicos donde la música y la naturaleza se encuentran, llevándote en un viaje sonoro desde el atardecer hasta el amanecer.",
+			"Mi misión es crear momentos místicos donde la música y la naturaleza se encuentran, llevándote en un viaje sonoro desde el atardecer hasta el amanecer.",
 		stats: {
 			shows: "Shows Realizados",
 			followers: "Seguidores",
@@ -26,7 +26,7 @@ export const translations = {
 	events: {
 		title: "Proximos Eventos",
 		titlepassed: "Eventos Pasados",
-		description: "Venen sentir la magia del coucher del sol",
+		description: "Sé parte de esta energía cintilante",
 		button: "Ver Agenda Completa",
 		buttonpassed: "Ver Agenda Pasada",
 		details: "Ver Detalles",
@@ -41,7 +41,7 @@ export const translations = {
 	},
 	soundcloud: {
 		title: "Mis Mixes",
-		subtitle: "Escucha y siente la vibra del océano en cada pista",
+		subtitle: "Siente el pulso del océano en cada set",
 		button: "Ver Perfil en SoundCloud",
 		play: "Clicar para cargar el reproductor",
 	},
@@ -52,18 +52,18 @@ export const translations = {
 	},
 	instagram: {
 		title: "Seguime en Instagram",
-		subtitle: "Sigue mis últimas creaciones",
+		subtitle: "Mantente al tanto de las últimas novedades",
 		button: "Ver Perfil en Instagram",
 	},
 
 	contact: {
 		connect: "Conectar",
-		subtitle: "Sigue mi música a través de las olas sonoras",
-		caption: "Donde el océano se encuentra con el sonido, la magia ocurre",
+		subtitle: "Sigue el viaje a través de las olas y el sonido",
+		caption: "Cuando el oceano encuentra el sonido, surge la magia.",
 	},
 	footer: {
 		copyright: "Todos los derechos reservados.",
-		location: "Baseado en Santiago - Chile 🇨🇱",
+		location: "Residente en Santiago - Chile 🇨🇱",
 	},
 	date: {
 		months: {

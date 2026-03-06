@@ -10,12 +10,12 @@ export const translations = {
 		subtitle: "Producteur de Musique Électronique et DJ",
 	},
 	about: {
-		role: "In_m’Ocean",
+		role: "in_m'Ócean",
 		title: "À propos",
 		description:
-			"Je m'appelle Max Nunes, un producteur de musique électronique et DJ brésilien basé à Florianópolis, SC - Brésil 🇧🇷. Je me spécialise dans la création de sons immersifs qui combinent des rythmes électroniques avec des éléments naturels, créant ainsi une expérience unique et inoubliable pour mon public.",
+			"Je m'appelle Max Nunes, DJ brésilien installé à Santiago du Chili. Inspiré par le bleu de l'océan, les lueurs déclinantes du crépuscule et l'énergie de ma ville natale, je crée des paysages sonores ancrés dans la Liquid et la Shimmer Drum and Bass, fusionnant rythmes électroniques et textures aquatiques pour évoquer l'instant précis qui précède l'immersion : le souffle suspendu, le pouls qui s'élève, la profondeur qui se dévoile.",
 		mission:
-			"Ma mission est de créer des moments magiques où la musique et la nature se rencontrent, te transportant dans un voyage sonore depuis le coucher du soleil jusqu'à l'aube.",
+			"Ma mission est de créer des moments mystiques où musique et nature se rencontrent, vous emmenant dans un voyage sonore du coucher au lever du soleil.",
 		stats: {
 			shows: "Shows Réalisés",
 			followers: "Followers",
@@ -26,7 +26,7 @@ export const translations = {
 	events: {
 		title: "Prochains Événements",
 		titlepassed: "Événements Passés",
-		description: "Venez sentir la magie du coucher du soleil",
+		description: "Plongez dans cette énergie scintillante",
 		button: "Voir l'Agenda Complet",
 		buttonpassed: "Voir l'Agenda Passé",
 		details: "Voir détail",
@@ -41,8 +41,7 @@ export const translations = {
 	},
 	soundcloud: {
 		title: "Mes Mixes",
-		subtitle:
-			"Écoutez et ressentez les vibrations de l'océan dans chaque piste",
+		subtitle: "Ressentez le pouls de l'océan à chaque set",
 		button: "Voir le Profil SoundCloud",
 		play: "Cliquer pour charger le lecteur",
 	},
@@ -53,13 +52,13 @@ export const translations = {
 	},
 	instagram: {
 		title: "Suivez-moi sur Instagram",
-		subtitle: "Suivez mes dernières créations",
+		subtitle: "Restez à l’affût des dernières nouveautés",
 		button: "Voir le Profil Instagram",
 	},
 	contact: {
 		connect: "Connect",
-		subtitle: "Suivez ma musique à travers les vagues sonores",
-		caption: "Où l'océan rencontre le son, la magie se produit",
+		subtitle: "Suivez le voyage au fil des vagues et des sons",
+		caption: "Quand l'océan rencontre le son, la magie opère.",
 	},
 	footer: {
 		copyright: "Tous les droits réservés.",
