@@ -63,7 +63,7 @@ export const translations = {
 	},
 	footer: {
 		copyright: "Todos los derechos reservados.",
-		location: "Residente en Santiago - Chile 🇨🇱",
+		location: "Residente en Santiago - Chile",
 	},
 	date: {
 		months: {

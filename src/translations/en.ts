@@ -62,7 +62,7 @@ export const translations = {
 	},
 	footer: {
 		copyright: "All rights reserved.",
-		location: "Based in Santiago - Chile 🇨🇱",
+		location: "Based in Santiago - Chile",
 	},
 	date: {
 		months: {
