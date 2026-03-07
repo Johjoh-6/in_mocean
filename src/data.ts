@@ -13,8 +13,8 @@ export const socialLinks = [
 	{
 		iconName: "instagram",
 		label: "Instagram",
-		handle: "@in__m’Ocean",
-		href: "https://instagram.com/in_m’Ocean",
+		handle: "@in__mocean",
+		href: "https://www.instagram.com/in__mocean",
 		color: "from-purple-500 to-pink-500",
 	},
 	{
