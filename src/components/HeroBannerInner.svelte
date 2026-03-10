@@ -138,7 +138,7 @@
 				bind:this={heroTitle}
 				class="text-4xl md:text-6xl lg:text-8xl font-black mb-6 text-center"
 			>
-				in_m'Ócean
+				in_m'Ocean
 			</h1>
 			<p
 				bind:this={heroSubtitle}

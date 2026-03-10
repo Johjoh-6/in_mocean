@@ -10,7 +10,7 @@ export const translations = {
 		subtitle: "Produtor de Música Eletrônica e DJ",
 	},
 	about: {
-		role: "in_m'Ócean",
+		role: "in_m'Ocean",
 		title: "Sobre Mim",
 		description:
 			"Meu nome é Max Nunes, um DJ brasileiro radicado em Santiago, Chile. Inspirado pelo azul do oceano, pela luz tênue do pôr do sol e pela energia da minha cidade natal, crio paisagens sonoras com raízes no Liquid e Shimmer Drum & Bass, fundindo ritmos eletrônicos com texturas aquáticas para evocar o instante preciso antes da imersão — a respiração suspensa, a pulsação crescente, a profundidade se revelando.",
