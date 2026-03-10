@@ -72,11 +72,11 @@ const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 
 						<!-- Role Badge -->
 						<div
-							class="absolute -bottom-4 left-1/2 -translate-x-1/2 text-text-primary px-6 py-3 rounded-full text-sm font-bold shadow-2xl border border-white/10 backdrop-blur-sm"
+							class="absolute -bottom-4 left-1/2 -translate-x-1/2 text-text-primary px-4 md:px-6 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold shadow-2xl border border-white/10 backdrop-blur-sm"
 							style="background-image: var(--gradient-badge)"
 						>
 							<span
-								class="flex items-center gap-2"
+								class="flex items-center gap-2 flex-nowrap flex-row"
 								role="img"
 								aria-label="DJ headphones"
 							>
@@ -113,7 +113,7 @@ const uniqueLocations = new Set(allEvents.map(({ data }) => data.location));
 
 					<!-- Stats Grid -->
 					<div
-						class="grid grid-cols-2 gap-4 md:gap-6 pt-8"
+						class="grid grid-cols-2 gap-4 justify-stretch items-stretch md:gap-6 pt-8"
 						role="list"
 						aria-label="DJ Statistics"
 					>
