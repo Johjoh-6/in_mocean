@@ -58,8 +58,8 @@
 		onkeydown={handleKeydown}
 	>
 		<div
-			class="relative flex items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-lg border border-border-muted bg-surface-card-solid/80 hover:border-brand-orange-500/50 transition-all duration-300"
-			style={`min-height: ${iframeHeight}px;`}
+			class="relative flex items-center gap-3 sm:gap-4 p-4 sm:p-6 rounded-lg border border-border-muted bg-surface-card-solid/80 hover:border-brand-orange-500/50 transition-all duration-300 sc-preview"
+			style={`--sc-min-height-mobile: 110px; --sc-min-height: ${iframeHeight}px;`}
 		>
 			<!-- Thumbnail or music icon fallback -->
 			<div
@@ -123,3 +123,16 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	/* Keep the preview compact on small devices while honoring the embed height on bigger screens */
+	.sc-preview {
+		min-height: var(--sc-min-height-mobile, 110px);
+	}
+
+	@media (min-width: 640px) {
+		.sc-preview {
+			min-height: var(--sc-min-height, 166px);
+		}
+	}
+</style>
