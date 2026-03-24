@@ -19,14 +19,27 @@ const copyright =
 <footer
 	class="bottom-0 left-0 right-0 z-10 py-8 border-t border-border-subtle backdrop-blur-sm"
 >
-	<div class="container mx-auto px-4">
+	<div class="container mx-auto px-4 select-none">
 		<div
 			class="flex flex-col md:flex-row items-center justify-between gap-4 text-text-faint text-sm"
 		>
 			<p>{copyright}. {t(locale, "footer.copyright")}</p>
-			<p class="flex items-center gap-2">
-				{t(locale, "footer.location")}
-			</p>
+			<div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+				<p class="flex items-center gap-2">
+					{t(locale, "footer.location")}
+				</p>
+
+				<span class="hidden sm:inline opacity-60">•</span>
+
+				<p class="opacity-80">
+					Website by <a
+						href="https://www.linkedin.com/in/johann-six/"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="font-medium text-text-faint">Johann S. Dev</a
+					>
+				</p>
+			</div>
 		</div>
 	</div>
 </footer>
