@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import Logo from "../assets/logo.avif";
+import Logo from "../assets/full_logo.svg";
 import { t, type Locale } from "../translations";
 import MobileNav from "./MobileNav.svelte";
 import LocaleSelector from "./LocaleSelector.svelte";
@@ -51,7 +51,7 @@ const localeOptions = locales.map((l) => ({
 	]}
 >
 	<nav
-		class="container mx-auto flex justify-between items-center px-6 py-4"
+		class="container mx-auto flex justify-between items-center px-4 py-2"
 		aria-label="Main navigation"
 	>
 		<a href={`${basePath}/`} aria-label="Home">
