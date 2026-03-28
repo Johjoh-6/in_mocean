@@ -1,5 +1,6 @@
 import { file, glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import YouTubeAPI from "./api/youtube-api";
 
 //
@@ -9,7 +10,7 @@ import YouTubeAPI from "./api/youtube-api";
 const tracksSchema = z.object({
 	id: z.string().min(1),
 	title: z.string().min(1, "title is required"),
-	url: z.string().url("url must be a valid URL"),
+	url: z.url("url must be a valid URL"),
 });
 
 const eventsSchema = (image: Function) =>
@@ -20,14 +21,14 @@ const eventsSchema = (image: Function) =>
 		city: z.string().min(1, "city is required"),
 		country: z.string().min(1, "country is required"),
 		location: z.string().min(1, "location is required"),
-		url: z.string().url("url must be a valid URL").nullable().optional(),
-		image: z.union([image(), z.string().url("image must be a valid URL")]),
+		url: z.url("url must be a valid URL").nullable().optional(),
+		image: z.union([image(), z.url("image must be a valid URL")]),
 	});
 
 const youtubeVideoSchema = z.object({
 	title: z.string(),
 	description: z.string(),
-	thumbnail: z.string().url(),
+	thumbnail: z.url(),
 	publishedAt: z.string(),
 	duration: z.string(),
 	views: z.string(),
@@ -38,8 +39,8 @@ const youtubeVideoSchema = z.object({
 const instagramSchema = (image: Function) =>
 	z.object({
 		alt: z.string().min(1, "alt is required"),
-		href: z.string().url("href must be a valid URL").optional(),
-		image: z.union([image(), z.string().url("image must be a valid URL")]),
+		href: z.url("href must be a valid URL").optional(),
+		image: z.union([image(), z.url("image must be a valid URL")]),
 	});
 
 //

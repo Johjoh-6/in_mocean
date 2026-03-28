@@ -2,6 +2,7 @@
 	import { onDestroy, onMount } from "svelte";
 	import gsap from "gsap";
 	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import TitleSvg from "../assets/logotipo.svg?url";
 
 	const { imageSrc }: { imageSrc: string } = $props();
 
@@ -134,6 +135,13 @@
 		<div
 			class="absolute inset-0 flex flex-col items-center justify-center text-text-primary z-10"
 		>
+			<!-- <img
+				src={TitleSvg}
+				alt="in_m'Ocean"
+				bind:this={heroTitle}
+				class="w-80 md:w-120 lg:w-180 h-auto"
+			/> -->
+
 			<h1
 				bind:this={heroTitle}
 				class="text-4xl md:text-6xl lg:text-8xl font-black mb-6 text-center"
