@@ -75,3 +75,7 @@ Language supported:
 - Add a blog section with posts and categories
 - Add an admin panel for managing content
 - Use S3 for static assets
+- Refresh content for the event
+
+## Bug
+Actually Astro is a Static Site Generator, since it run when it deploy. We need to manually refresh for rebuild the new version.
