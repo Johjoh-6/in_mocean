@@ -63,7 +63,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
       </header>
 
       {!hasVideos ? (
-        <!-- Empty State -->
+        // Empty State
         <div class="text-center py-12">
           <div class="bg-surface-card border border-border-muted rounded-lg p-6 max-w-md mx-auto mb-8">
             <p class="text-text-secondary mb-2">No videos found.</p>
@@ -82,7 +82,7 @@ const YoutubeUrl = getSocialLinkByName("youtube")?.href || "";
           </a>
         </div>
       ) : (
-        <!-- Videos Grid -->
+        // Videos Grid
           <div class="grid md:grid-cols-2 gap-8 mb-16">
             {videos.map((video) => (
               <a href={`https://www.youtube.com/watch?v=${video.id}`}
